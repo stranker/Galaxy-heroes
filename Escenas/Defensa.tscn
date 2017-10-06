@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Scripts/Defensa.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Naves/Defensa.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Naves/spaceStation_010.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22.3665, 22.3455 )
+
+[node name="Defensa" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.52588e-05, 117.224 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 120 )
+transform/scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Sprite 2" type="Sprite" parent="Sprite"]
+
+transform/pos = Vector2( 6.99258e-06, -163.613 )
+transform/rot = 270.0
+transform/scale = Vector2( 1.63441, 3 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -1.52588e-05, 117.224 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Pos_recolector" type="Position2D" parent="."]
+
+transform/pos = Vector2( -48.7355, 113.737 )
+
+[node name="Timer_reabastecimiento" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="Pos_disparo" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0.19371, 149.124 )
+
+[connection signal="body_enter" from="." to="." method="_on_Defensa_body_enter"]
+
+[connection signal="body_exit" from="." to="." method="_on_Defensa_body_exit"]
+
+[connection signal="timeout" from="Timer_reabastecimiento" to="." method="_on_Timer_reabastecimiento_timeout"]
+
+

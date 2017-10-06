@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Sprites/Poderes/Misil.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+resource/name = "Poder_Gui"
+script/source = "extends TextureProgress
+
+var poder
+var puedeDisparar = true
+
+func _ready():
+	pass
+
+func Poder(pod):
+	poder = pod
+	set_min(0)
+	set_max(poder.cooldown)
+	set_under_texture(poder.textura)
+	set_progress_texture(load(poder.textura_cd))
+	get_node(\"Timer\").set_wait_time(poder.cooldown)
+	set_process(true)
+
+func _process(delta):
+	var tiempo = get_node(\"Timer\").get_time_left()
+	set_value(tiempo)
+
+func Iniciar():
+	get_node(\"Timer\").start()
+	puedeDisparar = false
+
+func _on_Timer_timeout():
+	puedeDisparar = true
+	pass # replace with function body
+
+func TengoCD():
+	return puedeDisparar"
+
+[node name="Poder_Gui" type="TextureProgress"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 60.0
+margin/bottom = 60.0
+range/min = 0.0
+range/max = 5.0
+range/step = 1.0
+range/page = 0.0
+range/value = 5.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 1 )
+texture/over = null
+texture/progress = ExtResource( 1 )
+mode = 5
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+script/script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+

@@ -1,0 +1,185 @@
+[gd_scene load_steps=16 format=1]
+
+[ext_resource path="res://Scripts/Nivel.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Background/1.png" type="Texture" id=2]
+[ext_resource path="res://Escenas/Planeta.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Escenas/Defensa.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Escenas/Recolectora.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Escenas/Camara.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Escenas/Gui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Escenas/SpawnEnemigos.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Sounds/Soundtrack.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/nuevaOleada.wav" type="Sample" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 9 )
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "Wave"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wave:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5, 1.5, 2 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wave:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/nuevaOleada = {
+"db": 7.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+
+[node name="Nivel" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+
+transform/pos = Vector2( 499.783, 276.599 )
+transform/scale = Vector2( 0.5569, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Planeta" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
+
+[node name="Defensa" parent="Planeta" instance=ExtResource( 4 )]
+
+[node name="Recolectora" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 515.58, 336.825 )
+
+[node name="Camara" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 512, 300 )
+offset = Vector2( 0, 0 )
+
+[node name="Gui" parent="." instance=ExtResource( 7 )]
+
+[node name="SpawnEnemigos" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -122.738, -69.7377 )
+
+[node name="SpawnEnemigos1" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -83.3702, 662.749 )
+
+[node name="SpawnEnemigos2" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 1100.43, 632.266 )
+
+[node name="SpawnEnemigos3" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 1066.75, -82.6505 )
+
+[node name="TiempoWave" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 60.0
+one_shot = false
+autostart = false
+
+[node name="Wave" type="Label" parent="."]
+
+visibility/opacity = 0.0
+rect/scale = Vector2( 5, 5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 7.0
+margin/top = 291.0
+margin/right = 210.0
+margin/bottom = 305.0
+custom_fonts/font = SubResource( 1 )
+text = "WAVE 2"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Wave = SubResource( 2 )
+anims/idle = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "Estrellas"
+
+[node name="TiempoMuerto" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 10 )
+stream/play = true
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[connection signal="timeout" from="TiempoWave" to="." method="_on_TiempoWave_timeout"]
+
+[connection signal="timeout" from="TiempoMuerto" to="." method="_on_TiempoMuerto_timeout"]
+
+

@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Sprites/Poderes/SaltoCuantico.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+resource/name = "SaltoCuantico"
+script/source = "extends \"res://Scripts/Poder.gd\"
+
+const DISTANCIA = 200
+
+func _ready():
+	pass
+
+func Usar(recolectora):
+	var pos = DISTANCIA*recolectora.dir
+	recolectora.set_global_pos(pos+recolectora.get_global_pos())
+	recolectora.set_linear_velocity(Vector2(0,0))
+	pass
+
+func Inicializar():
+	nombre = \"Salto cuantico\"
+	detalle = \"La nave se traslada a 300 unidades de distancia\"
+	fuerza = 2
+	cooldown = 2
+	textura = get_node(\"Sprite\").get_texture()
+	textura_cd = \"res://Sprites/Poderes/SaltoCuantico_CD.png\"
+	return self"
+
+[node name="SaltoCuantico" type="Area2D"]
+
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+
+
