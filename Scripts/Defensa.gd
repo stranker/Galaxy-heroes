@@ -11,14 +11,13 @@ func _ready():
 	pass
 
 func _input(event):
-	if (event.is_action("Disparo") and event.is_pressed() and !event.is_echo()) and tengoEnergia():
+	if (event.is_action("Disparo") and event.is_pressed() and !event.is_echo()):
 		var rayo = rayo_escena.instance()
 		rayo.set_global_pos(get_node("Pos_disparo").get_global_pos())
 		rayo.dir = (get_global_mouse_pos()-get_global_pos()).normalized()
 		rayo.set_rotd(get_global_rotd()+270)
 		get_tree().get_root().add_child(rayo)
-		global.energia -= 1
-	if (event.is_action("DisparoEspecial") and event.is_pressed() and !event.is_echo() and global.CdTirador.TengoCD()):
+	if (event.is_action("DisparoEspecial") and event.is_pressed() and !event.is_echo() and global.CdTirador.TengoCD()  and tengoEnergia()):
 		var poder_instanciado = poder.instance()
 		poder_instanciado.set_global_pos(get_node("Pos_disparo").get_global_pos())
 		poder_instanciado.dir = (get_global_mouse_pos()-get_global_pos()).normalized()
@@ -26,6 +25,7 @@ func _input(event):
 		get_tree().get_root().add_child(poder_instanciado)
 		poder_instanciado.Disparar()
 		global.CdTirador.Iniciar()
+		global.energia -= 1
 	pass
 
 func tengoCdPoder():

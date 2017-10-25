@@ -42,7 +42,6 @@ func _on_Star_pressed():
 func _on_Timer_timeout():
 	randomize()
 	var num = randi() % back.size()
-	get_node("Principal").set_texture(load(back[num]))
 	pass # replace with function body
 
 
@@ -51,5 +50,5 @@ func _on_fondo_timeout():
 	var r = rand_range(0,1)
 	var g = rand_range(0,1)
 	var b = rand_range(0,1)
-	get_node("Principal").set_modulate(Color(r,g,b))
+	get_node("Background").set_modulate(Color(r,g,b))
 	pass # replace with function body

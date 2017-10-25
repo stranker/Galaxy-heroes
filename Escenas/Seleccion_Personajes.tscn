@@ -1,44 +1,19 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=13 format=1]
 
-[ext_resource path="res://Scripts/Seleccion_Personajes.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/UI/glassPanel_corners.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Escenas/SeleccionadorPersonajes.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sprites/UI/metalPanel_blueCorner.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/UI/buttonBlue.png" type="Texture" id=6]
-[ext_resource path="res://Sounds/soundPick.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Sprites/UI/glassPanel.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Seleccion_Personajes.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/UI/buttonBlue.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Sounds/soundPick.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Escenas/SeleccionadorPersonajes.tscn" type="PackedScene" id=6]
 
-[sub_resource type="StyleBoxTexture" id=1]
-
-content_margin/left = 0.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 2 )
-margin/left = 7.0
-margin/right = 7.0
-margin/top = 7.0
-margin/bottom = 7.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=2]
-
-font/size = 16
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 3 )
-
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -55,7 +30,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -72,7 +47,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -89,7 +64,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -105,13 +80,16 @@ draw_center = true
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
-[node name="Seleccion_Personajes" type="Node"]
+[sub_resource type="DynamicFont" id=2]
 
-script/script = ExtResource( 1 )
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 4 )
 
-[node name="Main" type="Panel" parent="."]
+[node name="Seleccion_Personajes" type="Panel"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -121,40 +99,8 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 1024.0
 margin/bottom = 600.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="Label" type="Label" parent="Main"]
-
-rect/scale = Vector2( 3, 3 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -100.0
-margin/top = 50.0
-margin/right = 313.0
-margin/bottom = 68.0
-custom_fonts/font = SubResource( 2 )
-text = "SELECCIONA LOS PERSONAJES"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Tiradores" parent="Main" instance=ExtResource( 4 )]
-
-margin/left = 90.0
-margin/top = 120.0
-margin/right = 340.0
-margin/bottom = 460.0
-
-[node name="Recolectores" parent="Main" instance=ExtResource( 4 )]
-
-margin/left = 690.0
-margin/top = 120.0
-margin/right = 940.0
-margin/bottom = 460.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 8 )
+script/script = ExtResource( 2 )
 
 [node name="Continuar" type="Button" parent="."]
 
@@ -180,7 +126,7 @@ flat = false
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 7 )
+stream/stream = ExtResource( 5 )
 stream/play = false
 stream/loop = true
 stream/volume_db = -4.0
@@ -189,6 +135,36 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[connection signal="pressed" from="Continuar" to="." method="_on_Continuar_pressed"]
+[node name="Label" type="Label" parent="."]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -100.0
+margin/top = 50.0
+margin/right = 313.0
+margin/bottom = 68.0
+custom_fonts/font = SubResource( 2 )
+text = "SELECCIONA LOS PERSONAJES"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tiradores" parent="." instance=ExtResource( 6 )]
+
+margin/left = 73.0
+margin/top = 117.0
+margin/right = 407.0
+margin/bottom = 464.0
+
+[node name="Recolectores" parent="." instance=ExtResource( 6 )]
+
+margin/left = 636.0
+margin/top = 118.0
+margin/right = 970.0
+margin/bottom = 465.0
 
 
