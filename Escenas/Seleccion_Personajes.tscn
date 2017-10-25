@@ -7,13 +7,47 @@
 [ext_resource path="res://Sounds/soundPick.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Escenas/SeleccionadorPersonajes.tscn" type="PackedScene" id=6]
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
 texture = ExtResource( 1 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 3 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 3 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -41,48 +75,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=5]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=6]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=6]
 
 font/size = 16
 font/use_mipmaps = false
@@ -99,7 +99,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 1024.0
 margin/bottom = 600.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 1 )
 script/script = ExtResource( 2 )
 
 [node name="Continuar" type="Button" parent="."]
@@ -112,10 +112,10 @@ margin/left = 440.0
 margin/top = 530.0
 margin/right = 590.0
 margin/bottom = 567.0
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.660156, 0.657578, 0.657578, 1 )
 toggle_mode = false
@@ -146,7 +146,7 @@ margin/left = -100.0
 margin/top = 50.0
 margin/right = 313.0
 margin/bottom = 68.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 text = "SELECCIONA LOS PERSONAJES"
 align = 1
 percent_visible = 1.0
@@ -166,5 +166,9 @@ margin/left = 636.0
 margin/top = 118.0
 margin/right = 970.0
 margin/bottom = 465.0
+
+[connection signal="item_rect_changed" from="." to="." method="_on_Seleccion_Personajes_item_rect_changed"]
+
+[connection signal="resized" from="." to="." method="_on_Seleccion_Personajes_resized"]
 
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_yellow.png" type="Texture" id=1]
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -19,20 +19,33 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
-resource/name = "DetallesPoder"
 script/source = "extends Panel
 
 func _ready():
 	pass
 
 func llenarInfo(poder):
-	get_node(\"Detalles\").clear()
-	get_node(\"Habilidad\").set_text(\"Habilidad: \"+str(poder.nombre))
-	get_node(\"Detalles\").add_text(poder.detalle)
+	get_node(\"VSplitContainer/Detalles\").clear()
+	get_node(\"VSplitContainer/Habilidad\").set_text(\"Habilidad: \"+str(poder.nombre))
+	get_node(\"VSplitContainer/Detalles\").add_text(poder.detalle)
+	get_node(\"VSplitContainer/Detalles\").edit_set_rect(Rect2(0,0,get_item_rect().size.x-5,get_item_rect().size.y))
 	pass
 "
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.972656, 0.0303955, 0.0303955, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
 
 [node name="DetallesPoderes" type="Panel"]
 
@@ -44,35 +57,51 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 213.0
 margin/bottom = 85.0
-custom_styles/panel = SubResource( 2 )
-script/script = SubResource( 1 )
+custom_styles/panel = SubResource( 1 )
+script/script = SubResource( 2 )
 
-[node name="Habilidad" type="Label" parent="."]
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 6.0
+margin/right = 214.0
+margin/bottom = 85.0
+custom_styles/bg = SubResource( 3 )
+custom_constants/separation = 20
+split/offset = 0
+split/collapsed = false
+split/dragger_visibility = 0
+
+[node name="Habilidad" type="Label" parent="VSplitContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = 6.0
-margin/right = 78.0
-margin/bottom = 20.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 206.0
+margin/bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Habilidad: "
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Detalles" type="RichTextLabel" parent="."]
+[node name="Detalles" type="RichTextLabel" parent="VSplitContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 22.0
-margin/right = 200.0
-margin/bottom = 72.0
+margin/left = 0.0
+margin/top = 34.0
+margin/right = 206.0
+margin/bottom = 79.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
