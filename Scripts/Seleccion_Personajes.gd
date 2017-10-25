@@ -10,6 +10,11 @@ func _ready():
 	crearRecolectores()
 	cargarPersonajes()
 	resize()
+	set_process(true)
+	pass
+
+func _process(delta):
+	resize()
 	pass
 
 func resize():
@@ -43,13 +48,4 @@ func _on_Continuar_pressed():
 	global.tirador = get_node("Tiradores").getPersonaje()
 	global.recolector = get_node("Recolectores").getPersonaje()
 	get_tree().change_scene("res://Escenas/Nivel.tscn")
-	pass # replace with function body
-
-func _on_Seleccion_Personajes_resized():
-	resize()
-	pass # replace with function body
-
-
-func _on_Seleccion_Personajes_item_rect_changed():
-	print("puto")
 	pass # replace with function body
