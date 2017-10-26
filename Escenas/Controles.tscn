@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://Sprites/UI/Controles.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/PNG/barHorizontal_red_mid.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_blue_mid.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -27,7 +28,7 @@ func _on_Siguiente_pressed():
 	pass # replace with function body
 "
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=7]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -44,7 +45,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -61,7 +62,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=9]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -80,14 +81,65 @@ draw_center = true
 
 [sub_resource type="DynamicFont" id=5]
 
-font/size = 16
+font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
+[sub_resource type="StyleBoxTexture" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 4 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 4 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 4 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
 [sub_resource type="DynamicFont" id=6]
 
-font/size = 16
+font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
@@ -209,18 +261,17 @@ max_lines_visible = -1
 
 [node name="Salir" type="Button" parent="Sprite"]
 
-rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 180.0
-margin/top = 250.0
-margin/right = 228.0
-margin/bottom = 270.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+margin/left = -261.0
+margin/top = 240.0
+margin/right = -142.0
+margin/bottom = 282.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -232,15 +283,14 @@ flat = false
 
 [node name="Siguiente" type="Button" parent="Sprite"]
 
-rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 180.0
-margin/top = 250.0
-margin/right = 228.0
-margin/bottom = 270.0
+margin/top = 237.0
+margin/right = 375.0
+margin/bottom = 285.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )

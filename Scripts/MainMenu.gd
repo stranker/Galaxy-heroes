@@ -8,11 +8,16 @@ func _ready():
 	get_node("SamplePlayer").play("test")
 	Input.set_custom_mouse_cursor(load("res://Sprites/UI/PNG/cursor_pointer3D.png"))
 	set_process(true)
+	inicializar()
 	pass
 
-func setPos():
-	get_node("Panel").edit_set_rect(Rect2(0,0,OS.get_window_size().width,OS.get_window_size().height))
+func inicializar():
+	var width = OS.get_window_size().width
+	var height = OS.get_window_size().height
 	get_node("Background").set_global_pos(Vector2(OS.get_window_size().width/2,OS.get_window_size().height/2))
+	get_node("Title").set_global_pos(Vector2(width/2-get_node("Title").get_rect().size.width/2,height/7))
+	get_node("Jugar").set_global_pos(Vector2(width/2-get_node("Jugar").get_rect().size.width/2,height/2))
+	get_node("Controles").set_global_pos(Vector2(width/2-get_node("Controles").get_rect().size.width/2,height/2+get_node("Jugar").get_rect().size.height+40))
 	pass
 
 func _process(delta):
@@ -22,7 +27,6 @@ func _process(delta):
 		get_node("anim").play("stars")
 		get_node("Timer").start()
 		get_node("fondo").start()
-	setPos()
 
 func _on_Jugar_pressed():
 	get_tree().change_scene("res://Escenas/ComoJugar.tscn")

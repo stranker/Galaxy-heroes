@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Background/1.png" type="Texture" id=2]
@@ -8,10 +8,10 @@
 [ext_resource path="res://Sounds/introp.wav" type="Sample" id=6]
 [ext_resource path="res://Sounds/test.wav" type="Sample" id=7]
 [ext_resource path="res://Sounds/star.ogg" type="AudioStream" id=8]
-[ext_resource path="res://Sprites/UI/04B_30__.TTF" type="DynamicFontData" id=9]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_blue_mid.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_blue_mid.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/UI/04B_30__.TTF" type="DynamicFontData" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 2.5, 4.5, 6.5, 8, 9 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -80, 500 ), Vector2( 950, 290 ), Vector2( 1180, 360 ), Vector2( 721.818, 410.909 ), Vector2( 110, 220 ), Vector2( -200, 100 ) ]
+"values": [ Vector2( -80, 500 ), Vector2( 1379.58, 195.157 ), Vector2( 1180, 360 ), Vector2( 721.818, 410.909 ), Vector2( 110, 220 ), Vector2( -200, 100 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Nave_1:transform/rot")
@@ -47,7 +47,7 @@ tracks/2/keys = {
 "times": FloatArray( 0, 2.5, 3.7, 6, 8.5, 10.5, 13, 15.1 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 520, 690 ), Vector2( 500, 660 ), Vector2( 440, 120 ), Vector2( 30, -110 ), Vector2( 110, -100 ), Vector2( 181.304, 37.3913 ), Vector2( 380, 560 ), Vector2( 560, 800 ) ]
+"values": [ Vector2( 612.504, 1017.97 ), Vector2( 500, 660 ), Vector2( 440, 120 ), Vector2( 30, -110 ), Vector2( 110, -100 ), Vector2( 181.304, 37.3913 ), Vector2( 380, 560 ), Vector2( 560, 800 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Nave_2:transform/rot")
@@ -142,19 +142,128 @@ samples/test = {
 "sample": ExtResource( 7 )
 }
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
+texture = ExtResource( 9 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=9]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 9 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=10]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 9 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=11]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 10 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 11 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=13]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 11 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=14]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 11 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=15]
+
+font/size = 20
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=5]
 
 font/size = 65
 font/use_mipmaps = true
 font/use_filter = true
-font/font = ExtResource( 9 )
+font/font = ExtResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 
@@ -182,122 +291,6 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxTexture" id=8]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 10 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=9]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 10 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=10]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 10 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=11]
-
-font/size = 30
-font/use_mipmaps = false
-font/use_filter = true
-font/font = ExtResource( 11 )
-
-[sub_resource type="StyleBoxTexture" id=12]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 12 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=13]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 12 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=14]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 12 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=15]
-
-font/size = 20
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 11 )
-
 [node name="MainMenu" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -309,15 +302,14 @@ texture = ExtResource( 2 )
 
 [node name="Nave_1" type="Sprite" parent="."]
 
-transform/pos = Vector2( -347.818, 386.322 )
-transform/rot = -480.939
+transform/pos = Vector2( 1299.75, 261.094 )
+transform/rot = -90.619
 texture = ExtResource( 3 )
 offset = Vector2( -0.330253, 35.0722 )
 
 [node name="Nave_2" type="Sprite" parent="."]
 
-transform/pos = Vector2( -354.214, 384.124 )
-transform/rot = -345.495
+transform/pos = Vector2( 460, 300 )
 texture = ExtResource( 4 )
 offset = Vector2( -0.280642, 31.2363 )
 
@@ -382,94 +374,17 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
-[node name="Panel" type="PanelContainer" parent="."]
-
-rect/min_size = Vector2( 600, 400 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 1
-size_flags/vertical = 1
-margin/left = -1.0
-margin/top = 91.0
-margin/right = 1026.0
-margin/bottom = 538.0
-custom_styles/panel = SubResource( 4 )
-
-[node name="Title" type="Label" parent="Panel"]
-
-rect/min_size = Vector2( 800, 100 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1027.0
-margin/bottom = 447.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 1, 0.972656, 0.972656, 1 )
-text = "Galaxy Heroes"
-align = 1
-clip_text = true
-uppercase = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Star" type="Button" parent="Panel/Title"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 107.0
-margin/top = 3.0
-margin/right = 924.0
-margin/bottom = 69.0
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 7 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = true
-
-[node name="Panel" type="CenterContainer" parent="Panel"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 1
-size_flags/vertical = 1
-margin/left = 363.0
-margin/top = 123.0
-margin/right = 663.0
-margin/bottom = 323.0
-use_top_left = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
-
-rect/min_size = Vector2( 200, 200 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 300.0
-margin/bottom = 200.0
-custom_constants/separation = 20
-alignment = 1
-
-[node name="Jugar" type="Button" parent="Panel/Panel/VBoxContainer"]
+[node name="Jugar" type="Button" parent="."]
 
 rect/min_size = Vector2( 300, 60 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 45.0
-margin/right = 300.0
-margin/bottom = 105.0
+margin/left = 690.0
+margin/top = 446.0
+margin/right = 1020.0
+margin/bottom = 536.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
@@ -482,17 +397,17 @@ shortcut = null
 text = "JUGAR"
 flat = false
 
-[node name="Controles" type="Button" parent="Panel/Panel/VBoxContainer"]
+[node name="Controles" type="Button" parent="."]
 
 rect/min_size = Vector2( 200, 30 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 125.0
-margin/right = 300.0
-margin/bottom = 155.0
+margin/left = 381.0
+margin/top = 267.0
+margin/right = 711.0
+margin/bottom = 327.0
 custom_styles/hover = SubResource( 12 )
 custom_styles/pressed = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
@@ -505,14 +420,52 @@ shortcut = null
 text = "Controles"
 flat = false
 
+[node name="Title" type="Label" parent="."]
+
+rect/min_size = Vector2( 800, 100 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = -1.0
+margin/top = 91.0
+margin/right = 799.0
+margin/bottom = 191.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 0.972656, 0.972656, 1 )
+text = "Galaxy Heroes"
+align = 1
+clip_text = true
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Star" type="Button" parent="Title"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = -4.0
+margin/right = 783.0
+margin/bottom = 62.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="fondo" to="." method="_on_fondo_timeout"]
 
-[connection signal="pressed" from="Panel/Title/Star" to="." method="_on_Star_pressed"]
+[connection signal="pressed" from="Jugar" to="." method="_on_Jugar_pressed"]
 
-[connection signal="pressed" from="Panel/Panel/VBoxContainer/Jugar" to="." method="_on_Jugar_pressed"]
+[connection signal="pressed" from="Controles" to="." method="_on_Controles_pressed"]
 
-[connection signal="pressed" from="Panel/Panel/VBoxContainer/Controles" to="." method="_on_Controles_pressed"]
+[connection signal="pressed" from="Title/Star" to="." method="_on_Star_pressed"]
 
 

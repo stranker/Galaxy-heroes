@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_green.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Naves/Defensa.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Enemigos/AsteroideG_1.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Naves/Bouclier.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Energia1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Naves/Satelite.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/UI/kenvector_future_thin.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/Naves/Defensa.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Enemigos/AsteroideG_1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Naves/Bouclier.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Energia1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Naves/Satelite.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
 
@@ -26,11 +27,11 @@ func _process(delta):
 	var width = OS.get_window_size().width
 	var height = OS.get_window_size().height
 	get_node(\".\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"Siguiente\").set_pos(Vector2(width/1.2,height/1.1))
+	get_node(\"Siguiente\").set_pos(Vector2(width/1.1-get_node(\"Siguiente\").get_rect().size.width,height/1.2))
 	get_node(\"Como Jugar\").set_pos(Vector2(width/2-get_node(\"Como Jugar\").get_rect().size.width*get_node(\"Como Jugar\").get_scale().x/2,height/8))
 	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/3))
 	get_node(\"Recolectar\").set_pos(Vector2(width/2-get_node(\"Recolectar\").get_rect().size.x,height/2))
-	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/1.4))
+	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/1.35))
 	pass
 
 
@@ -39,13 +40,50 @@ func _on_Siguiente_pressed():
 	pass # replace with function body
 "
 
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 50
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+
+font/size = 12
+extra_spacing/char = -1
+extra_spacing/space = 2
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
+
 [sub_resource type="StyleBoxTexture" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -62,7 +100,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -79,7 +117,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -92,10 +130,10 @@ draw_center = true
 
 [sub_resource type="DynamicFont" id=5]
 
-font/size = 16
+font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
-font/font = ExtResource( 8 )
+font/font = ExtResource( 2 )
 
 [node name="ComoJugar" type="Patch9Frame"]
 
@@ -112,7 +150,6 @@ script/script = SubResource( 1 )
 
 [node name="Como Jugar" type="Label" parent="."]
 
-rect/scale = Vector2( 5, 5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -121,6 +158,7 @@ margin/left = 291.0
 margin/top = 42.0
 margin/right = 362.0
 margin/bottom = 56.0
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Como Jugar"
 percent_visible = 1.0
@@ -129,6 +167,7 @@ max_lines_visible = -1
 
 [node name="Defensa" type="Label" parent="."]
 
+editor/display_folded = true
 rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -138,6 +177,7 @@ margin/left = 212.0
 margin/top = 135.0
 margin/right = 537.0
 margin/bottom = 149.0
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Dispara a los asteroides para conseguir Iridium!"
 percent_visible = 1.0
@@ -146,19 +186,20 @@ max_lines_visible = -1
 
 [node name="Sprite 3" type="Sprite" parent="Defensa"]
 
-transform/pos = Vector2( 113.68, 33.9754 )
+transform/pos = Vector2( 175.196, 39.1018 )
 transform/rot = 66.7196
 transform/scale = Vector2( 0.149448, 0.137573 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="Sprite 2" type="Sprite" parent="Defensa"]
 
-transform/pos = Vector2( 164.637, 43.6381 )
+transform/pos = Vector2( 236.406, 45.6886 )
 transform/scale = Vector2( 0.363492, 0.363716 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 
 [node name="Recolectar" type="Label" parent="."]
 
+editor/display_folded = true
 rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -168,6 +209,7 @@ margin/left = 212.0
 margin/top = 278.0
 margin/right = 438.0
 margin/bottom = 292.0
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Recolecta Iridium con tu recolector"
 percent_visible = 1.0
@@ -176,20 +218,21 @@ max_lines_visible = -1
 
 [node name="Sprite 4" type="Sprite" parent="Recolectar"]
 
-transform/pos = Vector2( 136.945, 40.6781 )
+transform/pos = Vector2( 190.259, 39.6528 )
 transform/rot = 70.5936
 transform/scale = Vector2( 0.442971, 0.498179 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Recolectar"]
 
-transform/pos = Vector2( 96.9226, 31.375 )
+transform/pos = Vector2( 145.11, 30.3497 )
 transform/rot = -135.105
 transform/scale = Vector2( 0.344823, 0.340764 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 
 [node name="Recco" type="Label" parent="."]
 
+editor/display_folded = true
 rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -197,8 +240,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 80.0
 margin/top = 470.0
-margin/right = 524.0
-margin/bottom = 484.0
+margin/right = 525.0
+margin/bottom = 488.0
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Regenera el escudo del planeta	                 Recarga el poder del tirador"
 percent_visible = 1.0
@@ -209,14 +253,14 @@ max_lines_visible = -1
 
 transform/pos = Vector2( 80, 25 )
 transform/scale = Vector2( 0.27907, 0.375 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 
 [node name="Sprite4" type="Sprite" parent="Recco"]
 
 transform/pos = Vector2( 351.5, 32 )
 transform/rot = -63.1258
 transform/scale = Vector2( 0.133721, 0.163195 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="Decide" type="Label" parent="Recco"]
 
@@ -229,6 +273,7 @@ margin/left = 185.0
 margin/top = -25.0
 margin/right = 237.0
 margin/bottom = -11.0
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DECIDE!"
 percent_visible = 1.0
@@ -237,15 +282,14 @@ max_lines_visible = -1
 
 [node name="Siguiente" type="Button" parent="."]
 
-rect/scale = Vector2( 1.2, 1.2 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 830.0
-margin/top = 530.0
-margin/right = 972.0
-margin/bottom = 572.0
+margin/left = 788.0
+margin/top = 498.0
+margin/right = 1009.0
+margin/bottom = 570.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
