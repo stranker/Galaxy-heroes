@@ -40,28 +40,28 @@ func _on_Siguiente_pressed():
 	pass # replace with function body
 "
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 
 font/size = 50
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=4]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=5]
 
 font/size = 12
 extra_spacing/char = -1
@@ -70,14 +70,14 @@ font/use_mipmaps = true
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=6]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=7]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -94,7 +94,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -111,7 +111,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=9]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -128,7 +128,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=10]
 
 font/size = 25
 font/use_mipmaps = false
@@ -158,7 +158,7 @@ margin/left = 291.0
 margin/top = 42.0
 margin/right = 362.0
 margin/bottom = 56.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Como Jugar"
 percent_visible = 1.0
@@ -177,7 +177,7 @@ margin/left = 212.0
 margin/top = 135.0
 margin/right = 537.0
 margin/bottom = 149.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Dispara a los asteroides para conseguir Iridium!"
 percent_visible = 1.0
@@ -209,7 +209,7 @@ margin/left = 212.0
 margin/top = 278.0
 margin/right = 438.0
 margin/bottom = 292.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Recolecta Iridium con tu recolector"
 percent_visible = 1.0
@@ -242,7 +242,7 @@ margin/left = 80.0
 margin/top = 470.0
 margin/right = 525.0
 margin/bottom = 488.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Regenera el escudo del planeta	                 Recarga el poder del tirador"
 percent_visible = 1.0
@@ -273,7 +273,7 @@ margin/left = 185.0
 margin/top = -25.0
 margin/right = 237.0
 margin/bottom = -11.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DECIDE!"
 percent_visible = 1.0
@@ -290,10 +290,10 @@ margin/left = 788.0
 margin/top = 498.0
 margin/right = 1009.0
 margin/bottom = 570.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 toggle_mode = false

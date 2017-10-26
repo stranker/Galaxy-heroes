@@ -28,7 +28,6 @@ func _input(event):
 	if event.is_action("Pausa") and event.is_pressed() and !event.is_echo() and !pausa:
 		var menu = menuPausa.instance()
 		get_tree().get_root().add_child(menu)
-		menu.set_global_pos(Vector2(1024,600)/2)
 	pass
 
 func CargarMapas():
