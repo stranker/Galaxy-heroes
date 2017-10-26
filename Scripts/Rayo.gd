@@ -22,4 +22,5 @@ func _on_Rayo_body_enter( body ):
 		queue_free()
 	if body.is_in_group("recolector") and !body.protegido:
 		body.Destruir()
+		queue_free()
 	pass # replace with function body

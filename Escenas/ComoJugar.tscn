@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_green.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Naves/Defensa.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Sprites/Energia1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Naves/Satelite.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="GDScript" id=1]
 
@@ -22,19 +23,19 @@ func _ready():
 	pass
 
 func _process(delta):
-	var width = get_viewport_rect().size.width
-	var height = get_viewport_rect().size.height
-	get_node(\".\").edit_set_rect(Rect2(0,0,get_viewport_rect().size.width,get_viewport_rect().size.height))
-	get_node(\"Siguiente\").set_pos(Vector2(width-get_node(\"Siguiente\").get_rect().size.x-55,height-get_node(\"Siguiente\").get_rect().size.y-30))
-	get_node(\"Como Jugar\").set_pos(Vector2(width/2-get_node(\"Como Jugar\").get_rect().size.x*2,40))
-	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/2-120))
+	var width = OS.get_window_size().width
+	var height = OS.get_window_size().height
+	get_node(\".\").edit_set_rect(Rect2(0,0,width,height))
+	get_node(\"Siguiente\").set_pos(Vector2(width/1.2,height/1.1))
+	get_node(\"Como Jugar\").set_pos(Vector2(width/2-get_node(\"Como Jugar\").get_rect().size.width*get_node(\"Como Jugar\").get_scale().x/2,height/8))
+	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/3))
 	get_node(\"Recolectar\").set_pos(Vector2(width/2-get_node(\"Recolectar\").get_rect().size.x,height/2))
-	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/2+170))
+	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/1.4))
 	pass
 
 
 func _on_Siguiente_pressed():
-	get_tree().change_scene(\"res://Escenas/Seleccion_Personajes.tscn\")
+	get_tree().change_scene(\"res://Escenas/Controles.tscn\")
 	pass # replace with function body
 "
 
@@ -89,6 +90,13 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 8 )
+
 [node name="ComoJugar" type="Patch9Frame"]
 
 focus/ignore_mouse = false
@@ -138,14 +146,14 @@ max_lines_visible = -1
 
 [node name="Sprite 3" type="Sprite" parent="Defensa"]
 
-transform/pos = Vector2( 109.768, 28.004 )
+transform/pos = Vector2( 113.68, 33.9754 )
 transform/rot = 66.7196
-transform/scale = Vector2( 0.103645, 0.0962275 )
+transform/scale = Vector2( 0.149448, 0.137573 )
 texture = ExtResource( 2 )
 
 [node name="Sprite 2" type="Sprite" parent="Defensa"]
 
-transform/pos = Vector2( 162.647, 36.3405 )
+transform/pos = Vector2( 164.637, 43.6381 )
 transform/scale = Vector2( 0.363492, 0.363716 )
 texture = ExtResource( 3 )
 
@@ -158,24 +166,25 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 212.0
 margin/top = 278.0
-margin/right = 541.0
+margin/right = 438.0
 margin/bottom = 292.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Recolecta Iridium para recargar tu arma o defensas!"
+text = "Recolecta Iridium con tu recolector"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="Sprite 4" type="Sprite" parent="Recolectar"]
 
-transform/pos = Vector2( 173.708, 33.2105 )
-transform/rot = 55.6074
-transform/scale = Vector2( 0.393162, 0.449513 )
+transform/pos = Vector2( 136.945, 40.6781 )
+transform/rot = 70.5936
+transform/scale = Vector2( 0.442971, 0.498179 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Recolectar"]
 
-transform/pos = Vector2( 142.369, 22.7213 )
+transform/pos = Vector2( 96.9226, 31.375 )
+transform/rot = -135.105
 transform/scale = Vector2( 0.344823, 0.340764 )
 texture = ExtResource( 5 )
 
@@ -188,7 +197,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 80.0
 margin/top = 470.0
-margin/right = 415.0
+margin/right = 524.0
 margin/bottom = 484.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Regenera el escudo del planeta	                 Recarga el poder del tirador"
@@ -204,7 +213,7 @@ texture = ExtResource( 6 )
 
 [node name="Sprite4" type="Sprite" parent="Recco"]
 
-transform/pos = Vector2( 295, 30 )
+transform/pos = Vector2( 351.5, 32 )
 transform/rot = -63.1258
 transform/scale = Vector2( 0.133721, 0.163195 )
 texture = ExtResource( 2 )
@@ -240,6 +249,7 @@ margin/bottom = 572.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 toggle_mode = false

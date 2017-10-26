@@ -26,7 +26,7 @@ func _process(delta):
 func CalcularPantalla():
 	var pos_x = get_global_pos().x
 	var pos_y = get_global_pos().y
-	var pantalla = get_viewport_rect().size
+	var pantalla = OS.get_window_size()
 	if pos_x > pantalla.x:
 		set_global_pos(Vector2(0,pos_y))
 	if pos_y > pantalla.y:

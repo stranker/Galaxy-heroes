@@ -16,6 +16,8 @@ func SetPoderes():
 	global.CdTirador = get_node("PanelPoderT/PoderTirador")
 	get_node("PanelPoderR/PoderRecolector").Poder(global.recolector.poder.instance().Inicializar())
 	global.CdRecolector = get_node("PanelPoderR/PoderRecolector")
+	get_node("PanelPoderT").set_global_pos(Vector2(OS.get_window_size().width/1.2,OS.get_window_size().height/1.2))
+	get_node("PanelPoderR").set_global_pos(Vector2(OS.get_window_size().width/6-get_node("PanelPoderR").get_item_rect().size.width,OS.get_window_size().height/1.2))
 
 func _process(delta):
 	vidaPlaneta = global.vidaPlaneta

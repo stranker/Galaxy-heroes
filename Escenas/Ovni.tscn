@@ -218,6 +218,7 @@ tracks/3/keys = {
 
 [node name="Ovni" type="RigidBody2D" groups=[
 "destruible",
+"wip",
 ]]
 
 input/pickable = true

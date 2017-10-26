@@ -4,7 +4,7 @@
 [ext_resource path="res://Sounds/laser1.wav" type="Sample" id=2]
 [ext_resource path="res://Sounds/test.wav" type="Sample" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -1.93768, 18.0247, -4.61993, -15.7401, 0.271236, -18.2646, 4.3735, -15.2668, 2.63793, 18.0247 )
@@ -43,7 +43,7 @@ func _on_VisibilityNotifier2D_exit_screen():
 	pass # replace with function body
 "
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/laser = {
 "db": 0.0,
@@ -60,10 +60,11 @@ samples/test = {
 
 [node name="DisparoOvni" type="Area2D" groups=[
 "destruible",
+"wip",
 ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( -1, 8.74228e-08, -8.74228e-08, -1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -97,7 +98,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 4 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
 [connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]

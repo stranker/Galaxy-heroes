@@ -53,10 +53,11 @@ func Forma():
 	pass
 
 func iniciar_pos():
-	var view = get_viewport_rect().size
-	var pos = Vector2(view.x,view.y+56)/2
+	var view = OS.get_window_size()
+	var pos = Vector2(view.x,view.y)/2
 	global.posTierra = pos
 	set_global_pos(pos)
+	pass
 
 func CrearNombre():
 	var listaPrefijo = ["A","Ah","At","Aa","Ae","B","Beh","Bo","C","Ca","Cuh","Du","Da","Deh","Dor","Ki","Ka","Ku","Keh","Meh","Mi","Ma","Min","Mu","La","Lai","Lur"]

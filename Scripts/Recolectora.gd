@@ -18,6 +18,7 @@ func _ready():
 	get_node("Sprite").set_texture(load(global.recolector.imagen_nave))
 	vivo = true
 	set_fixed_process(true)
+	set_pos(global.posTierra)
 	pass
 
 func _fixed_process(delta):
@@ -41,9 +42,9 @@ func Reabastecer():
 func UsarPoder():
 	if Input.is_action_pressed("PoderRecolector") and global.CdRecolector.TengoCD():
 		var poder_instanciado = poder.instance()
-		get_tree().get_root().add_child(poder_instanciado)
 		global.CdRecolector.Iniciar()
 		poder_instanciado.Usar(self)
+	pass
 
 func Limpiar():
 	energia = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://Scripts/Nivel.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Background/1.png" type="Texture" id=2]
@@ -19,40 +19,6 @@ font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 9 )
 
-[sub_resource type="Animation" id=2]
-
-resource/name = "Wave"
-length = 2.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Wave:visibility/opacity")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5, 1.5, 2 ),
-"transitions": FloatArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0, 1.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-
-resource/name = "idle"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Wave:visibility/opacity")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
 [sub_resource type="SampleLibrary" id=4]
 
 samples/nuevaOleada = {
@@ -62,7 +28,7 @@ samples/nuevaOleada = {
 "sample": ExtResource( 11 )
 }
 
-[node name="Nivel" type="Node"]
+[node name="Nivel" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
@@ -74,9 +40,7 @@ texture = ExtResource( 2 )
 
 [node name="Planeta" parent="." instance=ExtResource( 3 )]
 
-editor/display_folded = true
-
-[node name="Defensa" parent="Planeta" instance=ExtResource( 4 )]
+[node name="Defensa" parent="." instance=ExtResource( 4 )]
 
 [node name="Recolectora" parent="." instance=ExtResource( 5 )]
 
@@ -91,7 +55,7 @@ offset = Vector2( 0, 0 )
 
 [node name="SpawnEnemigos" parent="." instance=ExtResource( 8 )]
 
-transform/pos = Vector2( -122.738, -69.7377 )
+transform/pos = Vector2( 465.759, 289.282 )
 
 [node name="SpawnEnemigos1" parent="." instance=ExtResource( 8 )]
 
@@ -108,7 +72,7 @@ transform/pos = Vector2( 1066.75, -82.6505 )
 [node name="TiempoWave" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 60.0
+wait_time = 7.0
 one_shot = false
 autostart = false
 
@@ -122,26 +86,14 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 7.0
 margin/top = 291.0
-margin/right = 210.0
-margin/bottom = 305.0
+margin/right = 104.0
+margin/bottom = 309.0
 custom_fonts/font = SubResource( 1 )
 text = "WAVE 2"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="anim" type="AnimationPlayer" parent="."]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/Wave = SubResource( 2 )
-anims/idle = SubResource( 3 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "Estrellas"
 
 [node name="TiempoMuerto" type="Timer" parent="."]
 
@@ -177,6 +129,13 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="timeout" from="TiempoWave" to="." method="_on_TiempoWave_timeout"]
 

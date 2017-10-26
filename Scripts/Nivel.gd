@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var menuPausa = preload("res://Escenas/MenuPausa.tscn")
 var listaBack = []
@@ -10,15 +10,18 @@ func _ready():
 	setMapa()
 	get_node("TiempoWave").start()
 	set_process_input(true)
-	set_process(true)
+	inicializar()
 	pass
 
-func _process(delta):
-	get_node("Background").set_scale(Vector2(OS.get_window_size().x/600,OS.get_window_size().y/600))
+func inicializar():
+	get_node("Camara").set_global_pos(Vector2(OS.get_window_size().x,OS.get_window_size().y)/2)
 	get_node("SpawnEnemigos").set_global_pos(Vector2(0,0))
-	get_node("SpawnEnemigos1").set_global_pos(Vector2(0,OS.get_window_size().y))
-	get_node("SpawnEnemigos2").set_global_pos(Vector2(OS.get_window_size().x,OS.get_window_size().y))
-	get_node("SpawnEnemigos3").set_global_pos(Vector2(OS.get_window_size().x,0))
+	get_node("SpawnEnemigos1").set_global_pos(Vector2(0,OS.get_window_size().height))
+	get_node("SpawnEnemigos2").set_global_pos(Vector2(OS.get_window_size().width,OS.get_window_size().height))
+	get_node("SpawnEnemigos3").set_global_pos(Vector2(OS.get_window_size().width,0))
+	get_node("Defensa").set_global_pos(Vector2(OS.get_window_size().x,OS.get_window_size().y)/2)
+	get_node("Wave").set_global_pos(Vector2(OS.get_window_size().x/2-get_node("Wave").get_item_rect().size.width*2.4,OS.get_window_size().height/5))
+	_on_TiempoWave_timeout()
 	pass
 
 func _input(event):
@@ -26,7 +29,7 @@ func _input(event):
 		var menu = menuPausa.instance()
 		get_tree().get_root().add_child(menu)
 		menu.set_global_pos(Vector2(1024,600)/2)
-	
+	pass
 
 func CargarMapas():
 	for i in range (1,13):
@@ -40,9 +43,11 @@ func setMapa():
 	pass
 
 func _on_TiempoWave_timeout():
-	get_node("anim").play("Wave")
-	get_node("SamplePlayer").play("nuevaOleada")
 	global.wave += 1
+	get_node("Wave").set_text("WAVE "+str(global.wave))
+	get_node("Tween").interpolate_property(get_node("Wave"),"visibility/opacity",0,1,3,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+	get_node("Tween").interpolate_property(get_node("Wave"),"visibility/opacity",1,0,3,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT,3)
+	get_node("Tween").start()
 	pass # replace with function body
 
 func ReiniciarNivel():

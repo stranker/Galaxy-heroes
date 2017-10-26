@@ -109,6 +109,7 @@ script/script = ExtResource( 1 )
 
 [node name="PanelPlaneta" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -158,6 +159,7 @@ percent/visible = false
 
 [node name="PanelEnergia" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -245,6 +247,7 @@ max_lines_visible = -1
 
 [node name="PanelPoderR" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -264,6 +267,7 @@ margin/bottom = 72.0
 
 [node name="PanelPoderT" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

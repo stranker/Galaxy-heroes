@@ -1,12 +1,12 @@
 extends RigidBody2D
 
 var asteroides2_escena = preload("res://Escenas/Asteroide_2.tscn")
-var velocidad_x
-var velocidad_y
+var velocidad
 var rot = 0
 var danio = 2
 var texturas = ["res://Sprites/Enemigos/AsteroideG_1.png","res://Sprites/Enemigos/AsteroideG_2.png","res://Sprites/Enemigos/AsteroideG_3.png","res://Sprites/Enemigos/AsteroideG_4.png"]
 var vivo = true
+var dir = Vector2()
 
 func _ready():
 	Inicializar()
@@ -17,11 +17,11 @@ func Inicializar():
 	randomize()
 	var text = randi() % texturas.size()
 	get_node("Sprite").set_texture(load(texturas[text]))
-	velocidad_x = rand_range(60,70)
-	velocidad_y = rand_range(60,70)
+	velocidad = rand_range(100,200)
 	var dir_x = rand_range(-1,1)
 	var dir_y = rand_range(-1,1)
-	set_linear_velocity(Vector2(dir_x,dir_y)*Vector2(velocidad_x,velocidad_y))
+	dir = Vector2(dir_x,dir_y).normalized()
+	set_linear_velocity(Vector2(dir)*velocidad)
 	pass
 
 
@@ -31,7 +31,7 @@ func _process(delta):
 func CalcularPantalla():
 	var pos_x = get_global_pos().x
 	var pos_y = get_global_pos().y
-	var pantalla = get_viewport_rect().size
+	var pantalla = OS.get_window_size()
 	if pos_x > pantalla.x:
 		set_global_pos(Vector2(0,pos_y))
 	if pos_y > pantalla.y:

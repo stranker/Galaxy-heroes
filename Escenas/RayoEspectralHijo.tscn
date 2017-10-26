@@ -30,6 +30,11 @@ func _on_RayoEspectralHijo_body_enter( body ):
 		body.Destruir()
 		queue_free()
 	pass # replace with function body
+
+
+func _on_VisibilityNotifier2D_exit_screen():
+	queue_free()
+	pass # replace with function body
 "
 
 [sub_resource type="Animation" id=3]
@@ -121,6 +126,12 @@ default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+rect = Rect2( -10, -10, 20, 20 )
+
 [connection signal="body_enter" from="." to="." method="_on_RayoEspectralHijo_body_enter"]
+
+[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]
 
 

@@ -18,13 +18,14 @@ func _process(delta):
 	pass
 
 func resize():
-	var width = get_viewport_rect().size.x
-	var height = get_viewport_rect().size.y
-	edit_set_rect(Rect2(0,0,get_viewport_rect().size.width,get_viewport_rect().size.height))
-	get_node("Tiradores").set_pos(Vector2(width/2-get_node("Tiradores").get_item_rect().size.x-100,height/2-get_node("Recolectores").get_item_rect().size.y/2))
-	get_node("Recolectores").set_pos(Vector2(width/2+100,height/2-get_node("Recolectores").get_item_rect().size.y/2))
+	var width = OS.get_window_size().width
+	var height = OS.get_window_size().height
+	edit_set_rect(Rect2(0,0,width,height))
+	get_node("Tiradores").set_pos(Vector2(width/2-get_node("Tiradores").get_item_rect().size.x-150,height/2-get_node("Recolectores").get_item_rect().size.y/2))
+	get_node("Recolectores").set_pos(Vector2(width/2+150,height/2-get_node("Recolectores").get_item_rect().size.y/2))
 	get_node("Continuar").set_pos(Vector2(width/2-get_node("Continuar").get_item_rect().size.x/2,height-100))
 	get_node("Label").set_pos(Vector2(width/2-get_node("Label").get_item_rect().size.x-200,50))
+	get_node("Continuar").edit_set_rect(Rect2(0,0,width/7,height/14))
 	pass
 
 func crearTiradores():

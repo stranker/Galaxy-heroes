@@ -20,6 +20,7 @@ samples/asteroide = {
 
 [node name="Asteroide" type="RigidBody2D" groups=[
 "destruible",
+"wip",
 ]]
 
 input/pickable = false

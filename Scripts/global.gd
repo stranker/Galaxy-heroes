@@ -10,7 +10,7 @@ var recolector
 var CdTirador
 var CdRecolector
 var nombre
-var wave = 1
+var wave = 0
 var contadorEnemigos = 0
 
 func _ready():
@@ -20,13 +20,12 @@ func _ready():
 func Inicializar():
 	energia = 10
 	vidaPlaneta = 10
-	wave = 1
+	wave = 0
 	contadorEnemigos = 0
 	puntaje = 0
-	var hijos = get_tree().get_root().get_children()
-	for i in hijos:
-		if i.get_name().find("Asteroide")>=0 || i.get_name().find("Energia")>=0:
-			i.queue_free()
+	var wips = get_tree().get_nodes_in_group("wip")
+	for i in wips:
+		i.queue_free()
 
 func _process(delta):
 	if energia>10:
@@ -35,7 +34,11 @@ func _process(delta):
 		vidaPlaneta = 10
 
 func PuedoSpawnear():
-	return contadorEnemigos <= wave*3
+	if(wave>0):
+		if(contadorEnemigos <= wave*3):
+			return true
+		else:
+			return false
 
 func Shake():
 	camara.Shake()

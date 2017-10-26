@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Sprites/UI/Controles.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/PNG/barHorizontal_red_mid.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="GDScript" id=1]
 
@@ -9,14 +10,20 @@ resource/name = "Controles"
 script/source = "extends Node2D
 
 func _ready():
-	set_process(true)
+	get_node(\"Sprite\").edit_set_rect(Rect2(0,0,OS.get_window_size().width/1.5,OS.get_window_size().height/1.2))
+	get_node(\"Sprite\").set_global_pos(Vector2(OS.get_window_size().width,OS.get_window_size().height)/2)
+	get_node(\"Sprite/Salir\").set_global_pos(Vector2(OS.get_window_size().width/9,OS.get_window_size().height/1.08))
+	get_node(\"Sprite/Siguiente\").set_global_pos(Vector2(OS.get_window_size().width/1.5,OS.get_window_size().height/1.08))
 	pass
 
-func _process(delta):
-	get_node(\"Sprite\").set_global_pos(Vector2(get_viewport_rect().size.width/2,get_viewport_rect().size.height/2))
 
 func _on_Salir_pressed():
 	get_tree().change_scene(\"res://Escenas/MainMenu.tscn\")
+	pass # replace with function body
+
+
+func _on_Siguiente_pressed():
+	get_tree().change_scene(\"res://Escenas/Seleccion_Personajes.tscn\")
 	pass # replace with function body
 "
 
@@ -70,6 +77,20 @@ expand_margin/right = 0.0
 expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
+
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
 
 [node name="Controles" type="Node2D"]
 
@@ -200,14 +221,40 @@ margin/bottom = 270.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "SALIR"
+text = "Salir"
+flat = false
+
+[node name="Siguiente" type="Button" parent="Sprite"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 250.0
+margin/right = 228.0
+margin/bottom = 270.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Siguiente"
 flat = false
 
 [connection signal="pressed" from="Sprite/Salir" to="." method="_on_Salir_pressed"]
+
+[connection signal="pressed" from="Sprite/Siguiente" to="." method="_on_Siguiente_pressed"]
 
 

@@ -11,8 +11,8 @@ func _ready():
 	pass
 
 func setPos():
-	get_node("Panel").edit_set_rect(Rect2(0,0,get_viewport_rect().size.width,get_viewport_rect().size.height))
-	get_node("Background").set_global_pos(Vector2(get_viewport_rect().size.width/2,get_viewport_rect().size.height/2))
+	get_node("Panel").edit_set_rect(Rect2(0,0,OS.get_window_size().width,OS.get_window_size().height))
+	get_node("Background").set_global_pos(Vector2(OS.get_window_size().width/2,OS.get_window_size().height/2))
 	pass
 
 func _process(delta):

@@ -16,6 +16,7 @@ func Usar(recolectora):
 	var pos = DISTANCIA*recolectora.dir
 	recolectora.set_global_pos(pos+recolectora.get_global_pos())
 	recolectora.set_linear_velocity(Vector2(0,0))
+	queue_free()
 	pass
 
 func Inicializar():

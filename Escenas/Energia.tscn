@@ -34,7 +34,9 @@ tracks/1/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
-[node name="Energia" type="Area2D"]
+[node name="Energia" type="Area2D" groups=[
+"wip",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
