@@ -9,3 +9,6 @@ var detalle
 
 func _ready():
 	pass
+
+func get_nombre():
+	return nombre

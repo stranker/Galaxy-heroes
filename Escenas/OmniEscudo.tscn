@@ -55,6 +55,9 @@ func _on_OmniEscudo_body_enter( body ):
 		body.Destruir()
 		_on_Timer_timeout()
 	pass # replace with function body
+
+func get_nombre():
+	return \"Omniescudo\"
 "
 
 [node name="OmniEscudo" type="Area2D"]

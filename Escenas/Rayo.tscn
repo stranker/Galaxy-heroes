@@ -12,7 +12,7 @@ extents = Vector2( 27.5326, 5.21572 )
 [sub_resource type="Animation" id=2]
 
 resource/name = "Volar"
-length = 0.5
+length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -20,7 +20,7 @@ tracks/0/path = NodePath("Sprite:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.2, 0.5 ),
+"times": FloatArray( 0, 0.5, 1 ),
 "transitions": FloatArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.238265, 0.72125 ), Vector2( 0.606316, 1.0678 ), Vector2( 0.92594, 1 ) ]
@@ -30,7 +30,7 @@ tracks/1/path = NodePath("Sprite:transform/pos")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 0.2, 0.5 ),
+"times": FloatArray( 0, 0.5, 1 ),
 "transitions": FloatArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 19.0622, 3.7098e-07 ), Vector2( 28.6597, 2.38498e-08 ), Vector2( 27.2596, 2.26573e-07 ) ]

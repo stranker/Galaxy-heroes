@@ -42,6 +42,8 @@ func Reabastecer():
 func UsarPoder():
 	if Input.is_action_pressed("PoderRecolector") and global.CdRecolector.TengoCD():
 		var poder_instanciado = poder.instance()
+		if(poder_instanciado.get_nombre() == "Omniescudo" ):
+			get_tree().get_root().add_child(poder_instanciado)
 		global.CdRecolector.Iniciar()
 		poder_instanciado.Usar(self)
 	pass
@@ -68,7 +70,7 @@ func Movimiento():
 func CalcularPantalla():
 	var pos_x = get_global_pos().x
 	var pos_y = get_global_pos().y
-	var pantalla = get_viewport_rect().size
+	var pantalla = OS.get_window_size()
 	if pos_x > pantalla.x:
 		set_global_pos(Vector2(0,pos_y))
 	if pos_y > pantalla.y:
@@ -88,16 +90,22 @@ func Recolectar():
 	pass
 
 func Destruir():
-	vivo = false
-	set_linear_velocity(Vector2(0,0))
-	energia = 0
-	get_node("AnimationPlayer").play("Explotar")
+	if(vivo):
+		vivo = false
+		set_linear_velocity(Vector2(0,0))
+		energia = 0
+		get_node("AnimationPlayer").play("Explotar")
+	pass
 
 func Reaparecer():
 	get_node("Explosion").set_emitting(false)
+	get_node("Sprite").show()
+	get_node("ProgressBar").show()
 	set_global_pos(global.posTierra)
+	get_node("Tween").interpolate_property(self,"transform/scale",Vector2(0.1,0.1),Vector2(1,1),4,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+	get_node("Tween").start()
 	get_node("Timer_Reaparicion").start()
-	get_node("AnimationPlayer").play("Reaparecer")
+	pass
 
 func _on_Recolectora_body_enter( body ):
 	if not(reabasteciendo):

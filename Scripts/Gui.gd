@@ -22,12 +22,12 @@ func inicializar():
 	get_node("PanelVida").edit_set_rect(Rect2(Vector2(0,2),Vector2(width/2.5,40)))
 	get_node("PanelEnergia").edit_set_rect(Rect2(Vector2(width,2),Vector2(width/2.5,40)))
 	get_node("PanelEnergia").set_global_pos(Vector2(width-get_node("PanelEnergia").get_rect().size.width,0))
-	get_node("PanelVida/Planeta/ProgressBar").edit_set_rect(Rect2(Vector2(0,0),Vector2(get_node("PanelVida").get_rect().size.width/1.5,30)))
-	get_node("PanelEnergia/Energia/ProgressBar").edit_set_rect(Rect2(Vector2(0,0),Vector2(get_node("PanelEnergia").get_rect().size.width/1.5,30)))
-	get_node("PanelVida/Planeta/ProgressBar").set_global_pos(Vector2(get_node("PanelVida").get_pos().x + get_node("PanelVida").get_rect().size.width - get_node("PanelVida/Planeta/ProgressBar").get_rect().size.width - 5,get_node("PanelVida/Planeta").get_pos().y+(get_node("PanelVida/Planeta").get_rect().size.height-get_node("PanelVida/Planeta/ProgressBar").get_rect().size.y)/2))
-	get_node("PanelEnergia/Energia/ProgressBar").set_global_pos(Vector2(get_node("PanelEnergia").get_pos().x + get_node("PanelEnergia").get_rect().size.width - get_node("PanelEnergia/Energia/ProgressBar").get_rect().size.width - 5,get_node("PanelEnergia/Energia").get_pos().y+(get_node("PanelEnergia/Energia").get_rect().size.height-get_node("PanelEnergia/Energia/ProgressBar").get_rect().size.y)/2))
 	get_node("PanelVida/Planeta").set_global_pos(Vector2(5,0))
 	get_node("PanelEnergia/Energia").set_global_pos(Vector2(get_node("PanelEnergia").get_pos().x+5,0))
+	get_node("PanelVida/ProgressBar").edit_set_rect(Rect2(Vector2(0,0),Vector2(get_node("PanelVida").get_rect().size.width/1.5,30)))
+	get_node("PanelEnergia/ProgressBar").edit_set_rect(Rect2(Vector2(0,0),Vector2(get_node("PanelEnergia").get_rect().size.width/1.5,30)))
+	get_node("PanelVida/ProgressBar").set_global_pos(Vector2(get_node("PanelVida").get_pos().x + get_node("PanelVida").get_rect().size.width - get_node("PanelVida/ProgressBar").get_rect().size.width - 5,get_node("PanelVida/Planeta").get_pos().y+(get_node("PanelVida/Planeta").get_rect().size.height-get_node("PanelVida/ProgressBar").get_rect().size.y)/2))
+	get_node("PanelEnergia/ProgressBar").set_global_pos(Vector2(get_node("PanelEnergia").get_global_pos().x + get_node("PanelEnergia").get_rect().size.width - get_node("PanelEnergia/ProgressBar").get_rect().size.width - 5,get_node("PanelEnergia/Energia").get_global_pos().y+(get_node("PanelEnergia/Energia").get_rect().size.height-get_node("PanelEnergia/ProgressBar").get_rect().size.y)/2))
 	pass
 
 func SetPoderes():
@@ -46,8 +46,8 @@ func _process(delta):
 		nombre = global.nombre
 		wave = global.wave
 		get_node("PanelVida/Planeta").set_text(nombre)
-		get_node("PanelVida/Planeta/ProgressBar").set_value(vidaPlaneta)
-		get_node("PanelEnergia/Energia/ProgressBar").set_value(energia)
+		get_node("PanelVida/ProgressBar").set_value(vidaPlaneta)
+		get_node("PanelEnergia/ProgressBar").set_value(energia)
 		get_node("Wave").set_text("WAVE "+str(wave))
 		get_node("Puntaje").set_text("SCORE "+str(puntaje))
 	pass

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 9.30349, 9.27963 )
+extents = Vector2( 30.2502, 27.2106 )
 
 [node name="Satelite" type="Area2D"]
 

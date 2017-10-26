@@ -17,7 +17,6 @@ func inicializar():
 	get_node("Background").set_global_pos(Vector2(OS.get_window_size().width/2,OS.get_window_size().height/2))
 	get_node("Title").set_global_pos(Vector2(width/2-get_node("Title").get_rect().size.width/2,height/7))
 	get_node("Jugar").set_global_pos(Vector2(width/2-get_node("Jugar").get_rect().size.width/2,height/2))
-	get_node("Controles").set_global_pos(Vector2(width/2-get_node("Controles").get_rect().size.width/2,height/2+get_node("Jugar").get_rect().size.height+40))
 	pass
 
 func _process(delta):
@@ -32,16 +31,9 @@ func _on_Jugar_pressed():
 	get_tree().change_scene("res://Escenas/ComoJugar.tscn")
 	pass # replace with function body
 
-
-func _on_Controles_pressed():
-	get_tree().change_scene("res://Escenas/Controles.tscn")
-	pass # replace with function body
-
-
 func _on_Star_pressed():
 	easter += 1
 	pass # replace with function body
-
 
 func _on_Timer_timeout():
 	randomize()

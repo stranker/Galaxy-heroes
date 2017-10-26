@@ -10,11 +10,6 @@ func _ready():
 	crearRecolectores()
 	cargarPersonajes()
 	resize()
-	set_process(true)
-	pass
-
-func _process(delta):
-	resize()
 	pass
 
 func resize():
@@ -43,6 +38,8 @@ func crearRecolectores():
 func cargarPersonajes():
 	get_node("Tiradores").listaPersonajes = listaTiradores
 	get_node("Recolectores").listaPersonajes = listaRecolectores
+	get_node("Tiradores").setTipo("Tirador")
+	get_node("Recolectores").setTipo("Recolector")
 	pass
 
 func _on_Continuar_pressed():

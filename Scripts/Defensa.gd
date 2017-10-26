@@ -3,15 +3,19 @@ extends Area2D
 var recolectora
 var rayo_escena = preload("res://Escenas/Rayo.tscn")
 var poder
+var puedeDisparar = false
 
 func _ready():
 	set_process(true)
 	set_process_input(true)
 	poder = global.tirador.poder
+	puedeDisparar = true
 	pass
 
 func _input(event):
-	if (event.is_action("Disparo") and event.is_pressed() and !event.is_echo()):
+	if (event.is_action("Disparo") and event.is_pressed() and !event.is_echo()) and puedeDisparar:
+		puedeDisparar = false
+		get_node("TimerDisparo").start()
 		var rayo = rayo_escena.instance()
 		rayo.set_global_pos(get_node("Pos_disparo").get_global_pos())
 		rayo.dir = (get_global_mouse_pos()-get_global_pos()).normalized()
@@ -67,4 +71,9 @@ func _on_Timer_reabastecimiento_timeout():
 	recolectora.reabasteciendo = false
 	recolectora.set_linear_velocity(Vector2(5,1))
 	recolectora=null
+	pass # replace with function body
+
+
+func _on_TimerDisparo_timeout():
+	puedeDisparar = true
 	pass # replace with function body

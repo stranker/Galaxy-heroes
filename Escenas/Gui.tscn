@@ -175,16 +175,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ProgressBar" type="ProgressBar" parent="PanelVida/Planeta"]
+[node name="ProgressBar" type="ProgressBar" parent="PanelVida"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 24.0
-margin/top = 77.0
-margin/right = 1042.0
-margin/bottom = 128.0
+margin/left = 29.0
+margin/top = 78.0
+margin/right = 1047.0
+margin/bottom = 129.0
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 range/min = 0.0
@@ -202,9 +202,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 669.0
+margin/left = 500.0
 margin/top = 0.0
-margin/right = 1025.0
+margin/right = 856.0
 margin/bottom = 42.0
 custom_styles/panel = SubResource( 4 )
 
@@ -220,22 +220,22 @@ margin/right = -23.0
 margin/bottom = 128.0
 custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "TIRADOR"
+text = "ENERGIA"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ProgressBar" type="ProgressBar" parent="PanelEnergia/Energia"]
+[node name="ProgressBar" type="ProgressBar" parent="PanelEnergia"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -458.0
-margin/top = 85.0
-margin/right = 30.0
-margin/bottom = 106.0
+margin/left = -16.0
+margin/top = 101.0
+margin/right = 472.0
+margin/bottom = 122.0
 custom_styles/fg = SubResource( 8 )
 custom_styles/bg = SubResource( 9 )
 range/min = 0.0

@@ -14,7 +14,7 @@ points = Vector2Array( -1.93768, 18.0247, -4.61993, -15.7401, 0.271236, -18.2646
 resource/name = "DisparoOvni"
 script/source = "extends Area2D
 
-var velocidad = 200
+var velocidad = 400
 var danio = 1
 var rot
 var dir = Vector2()

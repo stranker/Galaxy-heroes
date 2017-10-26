@@ -56,10 +56,19 @@ autostart = false
 
 transform/pos = Vector2( 0.19371, 149.124 )
 
+[node name="TimerDisparo" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
 [connection signal="body_enter" from="." to="." method="_on_Defensa_body_enter"]
 
 [connection signal="body_exit" from="." to="." method="_on_Defensa_body_exit"]
 
 [connection signal="timeout" from="Timer_reabastecimiento" to="." method="_on_Timer_reabastecimiento_timeout"]
+
+[connection signal="timeout" from="TimerDisparo" to="." method="_on_TimerDisparo_timeout"]
 
 
