@@ -1,23 +1,31 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var vivo = true
-var velocidad_x
-var velocidad_y
+var velocidad
 var energia_escena = preload("res://Escenas/Energia.tscn")
 var danio = 1
 var texturas = ["res://Sprites/Enemigos/AsteroideC_1.png","res://Sprites/Enemigos/AsteroideC_2.png"]
+var velocity = Vector2()
+var dir
 
 func _ready():
 	randomize()
 	global.contadorEnemigos += 1 
 	var text = randi() % texturas.size()
 	get_node("Sprite").set_texture(load(texturas[text]))
-	velocidad_x = rand_range(70,100)
-	velocidad_y = rand_range(70,100)
+	velocidad = rand_range(200,400)
 	var dir_x = rand_range(-1,1)
 	var dir_y = rand_range(-1,1)
-	set_applied_force(Vector2(dir_x,dir_y)*Vector2(velocidad_x,velocidad_y))
-	set_process(true)
+	dir = Vector2(dir_x,dir_y).normalized()
+	set_fixed_process(true)
+	get_node("CollisionShape2D").set_trigger(true)
+	pass
+
+func _fixed_process(delta):
+	velocity.x = dir.y * velocidad * delta
+	velocity.y = dir.y * velocidad * delta
+	move(velocity)
+	CalcularPantalla()
 	pass
 
 func _process(delta):
@@ -42,13 +50,13 @@ func Destruir():
 	vivo = false
 	var num = 1+randi() % 3
 	for i in range(num):
-		var energia= energia_escena.instance()
+		var energia = energia_escena.instance()
 		get_tree().get_root().add_child(energia)
 		energia.set_global_pos(get_global_pos())
 	global.camara.Shake()
 	global.puntaje += 300
 	global.contadorEnemigos -= 1
-	set_linear_velocity(Vector2(0,0))
+	set_fixed_process(false)
 	get_node("SamplePlayer").play("asteroide")
 	get_node("AnimationPlayer").play("explotar")
 
@@ -57,3 +65,6 @@ func Daniar():
 		global.contadorEnemigos -= 1
 		queue_free()
 	return danio
+
+func vivo():
+	return vivo

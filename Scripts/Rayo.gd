@@ -17,7 +17,7 @@ func _on_VisibilityNotifier2D_exit_screen():
 	pass # replace with function body
 
 func _on_Rayo_body_enter( body ):
-	if body.is_in_group("destruible"):
+	if body.is_in_group("destruible") and body.vivo():
 		body.Destruir()
 		queue_free()
 	if body.is_in_group("recolector") and !body.protegido:

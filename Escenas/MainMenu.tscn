@@ -141,7 +141,7 @@ samples/test = {
 "sample": ExtResource( 7 )
 }
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=4]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -158,21 +158,21 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 
 font/size = 50
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 10 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=6]
 
 font/size = 65
 font/use_mipmaps = true
 font/use_filter = true
 font/font = ExtResource( 11 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=7]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -185,7 +185,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -292,10 +292,10 @@ margin/left = 691.0
 margin/top = 446.0
 margin/right = 1021.0
 margin/bottom = 536.0
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.394531, 0.394531, 0.394531, 1 )
 toggle_mode = false
@@ -315,7 +315,7 @@ margin/left = -1.0
 margin/top = 91.0
 margin/right = 799.0
 margin/bottom = 191.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 0.972656, 0.972656, 1 )
 text = "Galaxy Heroes"
 align = 1
@@ -335,8 +335,8 @@ margin/left = 8.0
 margin/top = -4.0
 margin/right = 783.0
 margin/bottom = 62.0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

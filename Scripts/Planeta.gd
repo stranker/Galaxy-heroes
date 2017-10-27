@@ -12,6 +12,7 @@ func _ready():
 	global.nombre = CrearNombre()
 	set_process(true)
 	get_node("Particles2D").set_emitting(false)
+	get_node("gameOver").hide()
 	pass
 
 func _process(delta):
@@ -79,7 +80,7 @@ func Explotar():
 	pass
 
 func _on_Proteccion_body_enter( body ):
-	if body.is_in_group("destruible") and vivo:
+	if body.is_in_group("destruible") and vivo and body.vivo():
 		global.vidaPlaneta -= body.Daniar()
 		get_node("SamplePlayer").play("planetaChoque")
 		get_node("AnimationPlayer").play("choque")

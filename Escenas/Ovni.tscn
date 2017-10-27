@@ -82,7 +82,9 @@ func _on_Timer_timeout():
 	get_tree().get_root().add_child(misil)
 	misil.set_global_pos(self.get_global_pos())
 	pass # replace with function body
-"
+
+func vivo():
+	return vivo"
 
 [sub_resource type="SampleLibrary" id=3]
 

@@ -61,7 +61,9 @@ func _on_AtractorGravitacional_area_exit( area ):
 	if area extends energia:
 		area.atraido = false
 	pass # replace with function body
-"
+
+func get_nombre():
+	return \"Atractor\""
 
 [sub_resource type="Animation" id=3]
 

@@ -19,6 +19,8 @@ func _ready():
 	vivo = true
 	set_fixed_process(true)
 	set_pos(global.posTierra)
+	get_node("ProgressBar").show()
+	get_node("Sprite").show()
 	pass
 
 func _fixed_process(delta):
@@ -42,7 +44,7 @@ func Reabastecer():
 func UsarPoder():
 	if Input.is_action_pressed("PoderRecolector") and global.CdRecolector.TengoCD():
 		var poder_instanciado = poder.instance()
-		if(poder_instanciado.get_nombre() == "Omniescudo" ):
+		if(poder_instanciado.get_nombre() == "Omniescudo" || poder_instanciado.get_nombre() == "Atractor"):
 			get_tree().get_root().add_child(poder_instanciado)
 		global.CdRecolector.Iniciar()
 		poder_instanciado.Usar(self)
@@ -98,10 +100,10 @@ func Destruir():
 	pass
 
 func Reaparecer():
+	set_global_pos(global.posTierra)
 	get_node("Explosion").set_emitting(false)
 	get_node("Sprite").show()
 	get_node("ProgressBar").show()
-	set_global_pos(global.posTierra)
 	get_node("Tween").interpolate_property(self,"transform/scale",Vector2(0.1,0.1),Vector2(1,1),4,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	get_node("Tween").start()
 	get_node("Timer_Reaparicion").start()

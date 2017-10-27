@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_green.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Sprites/Naves/Bouclier.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Energia1.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Naves/Satelite.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/buttonYellow.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
 
@@ -29,9 +29,9 @@ func _process(delta):
 	get_node(\".\").edit_set_rect(Rect2(0,0,width,height))
 	get_node(\"Siguiente\").set_pos(Vector2(width/1.1-get_node(\"Siguiente\").get_rect().size.width,height/1.2))
 	get_node(\"Como Jugar\").set_pos(Vector2(width/2-get_node(\"Como Jugar\").get_rect().size.width*get_node(\"Como Jugar\").get_scale().x/2,height/8))
-	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/3))
+	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/2-200))
 	get_node(\"Recolectar\").set_pos(Vector2(width/2-get_node(\"Recolectar\").get_rect().size.x,height/2))
-	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/1.35))
+	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/2+220))
 	pass
 
 
@@ -42,7 +42,7 @@ func _on_Siguiente_pressed():
 
 [sub_resource type="DynamicFont" id=2]
 
-font/size = 50
+font/size = 70
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
@@ -94,41 +94,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=8]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 9 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=9]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 9 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=8]
 
 font/size = 25
 font/use_mipmaps = false
@@ -232,7 +198,6 @@ texture = ExtResource( 7 )
 
 [node name="Recco" type="Label" parent="."]
 
-editor/display_folded = true
 rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -270,9 +235,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 185.0
-margin/top = -25.0
-margin/right = 237.0
-margin/bottom = -11.0
+margin/top = -31.0
+margin/right = 250.0
+margin/bottom = -13.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DECIDE!"
@@ -291,11 +256,11 @@ margin/top = 498.0
 margin/right = 1009.0
 margin/bottom = 570.0
 custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.585938, 0.585938, 0.585938, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

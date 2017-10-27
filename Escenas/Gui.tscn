@@ -23,14 +23,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=2]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -43,7 +43,7 @@ border_size = 3
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -56,7 +56,7 @@ border_size = 2
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=5]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -73,14 +73,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=6]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=7]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -93,7 +93,7 @@ border_size = 5
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -106,21 +106,21 @@ border_size = 5
 border_blend = true
 draw_bg = true
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=9]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=10]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=11]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -167,7 +167,7 @@ margin/left = 5.0
 margin/top = 1.0
 margin/right = 165.0
 margin/bottom = 41.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "MIAUMIGATO"
 valign = 1
@@ -185,8 +185,8 @@ margin/left = 29.0
 margin/top = 78.0
 margin/right = 1047.0
 margin/bottom = 129.0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 range/min = 0.0
 range/max = 10.0
 range/step = 1.0
@@ -206,7 +206,7 @@ margin/left = 500.0
 margin/top = 0.0
 margin/right = 856.0
 margin/bottom = 42.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="Energia" type="Label" parent="PanelEnergia"]
 
@@ -218,7 +218,7 @@ margin/left = -132.0
 margin/top = 88.0
 margin/right = -23.0
 margin/bottom = 128.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "ENERGIA"
 valign = 1
@@ -236,8 +236,8 @@ margin/left = -16.0
 margin/top = 101.0
 margin/right = 472.0
 margin/bottom = 122.0
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 range/min = 0.0
 range/max = 10.0
 range/step = 1.0
@@ -257,7 +257,7 @@ margin/left = 573.0
 margin/top = 28.0
 margin/right = 873.0
 margin/bottom = 46.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 9 )
 text = "TEST"
 align = 1
 percent_visible = 1.0
@@ -274,7 +274,7 @@ margin/left = 583.0
 margin/top = 6.0
 margin/right = 683.0
 margin/bottom = 24.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 10 )
 text = "TEST"
 align = 1
 percent_visible = 1.0
@@ -292,7 +292,7 @@ margin/left = 60.0
 margin/top = 513.0
 margin/right = 135.0
 margin/bottom = 588.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 11 )
 
 [node name="PoderRecolector" parent="PanelPoderR" instance=ExtResource( 5 )]
 
@@ -312,7 +312,7 @@ margin/left = 890.0
 margin/top = 513.0
 margin/right = 965.0
 margin/bottom = 588.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 11 )
 
 [node name="PoderTirador" parent="PanelPoderT" instance=ExtResource( 5 )]
 

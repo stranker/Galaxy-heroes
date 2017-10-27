@@ -148,7 +148,7 @@ samples/planetaChoque = {
 
 [sub_resource type="DynamicFont" id=9]
 
-font/size = 40
+font/size = 50
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 10 )
