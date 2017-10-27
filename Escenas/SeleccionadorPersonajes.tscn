@@ -1,26 +1,27 @@
-[gd_scene load_steps=34 format=1]
+[gd_scene load_steps=36 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_redCorner.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/SeleccionadorPersonajes.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_left.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_right.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/UI/PNG/glassPanel_tab.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/UI/kenvector_future_thin.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Sprites/Mavic.png" type="Texture" id=7]
-[ext_resource path="res://Sounds/gaston_energia.wav" type="Sample" id=8]
-[ext_resource path="res://Sounds/gaston_vectorial.wav" type="Sample" id=9]
-[ext_resource path="res://Sounds/indi_acercate.wav" type="Sample" id=10]
-[ext_resource path="res://Sounds/indi_gravedad.wav" type="Sample" id=11]
-[ext_resource path="res://Sounds/nico_saltar.wav" type="Sample" id=12]
-[ext_resource path="res://Sounds/nico_triple.wav" type="Sample" id=13]
-[ext_resource path="res://Sounds/perro_pichi.wav" type="Sample" id=14]
-[ext_resource path="res://Sounds/perro_wofwof.wav" type="Sample" id=15]
-[ext_resource path="res://Sounds/rage_escudo.wav" type="Sample" id=16]
-[ext_resource path="res://Sounds/rage_torre.wav" type="Sample" id=17]
-[ext_resource path="res://Sounds/twain_hora.wav" type="Sample" id=18]
-[ext_resource path="res://Sounds/twain_senior.wav" type="Sample" id=19]
-[ext_resource path="res://Escenas/DetallesPoderes.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Sprites/UI/glassPanel.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Mavic.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_left.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_right.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/PNG/glassPanel_tab.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/kenvector_future_thin.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Sounds/gaston_energia.wav" type="Sample" id=9]
+[ext_resource path="res://Sounds/gaston_vectorial.wav" type="Sample" id=10]
+[ext_resource path="res://Sounds/indi_acercate.wav" type="Sample" id=11]
+[ext_resource path="res://Sounds/indi_gravedad.wav" type="Sample" id=12]
+[ext_resource path="res://Sounds/nico_saltar.wav" type="Sample" id=13]
+[ext_resource path="res://Sounds/nico_triple.wav" type="Sample" id=14]
+[ext_resource path="res://Sounds/perro_pichi.wav" type="Sample" id=15]
+[ext_resource path="res://Sounds/perro_wofwof.wav" type="Sample" id=16]
+[ext_resource path="res://Sounds/rage_escudo.wav" type="Sample" id=17]
+[ext_resource path="res://Sounds/rage_torre.wav" type="Sample" id=18]
+[ext_resource path="res://Sounds/twain_hora.wav" type="Sample" id=19]
+[ext_resource path="res://Sounds/twain_senior.wav" type="Sample" id=20]
+[ext_resource path="res://Escenas/DetallesPoderes.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=22]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -39,109 +40,24 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
+[sub_resource type="StyleBoxTexture" id=13]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 3 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
 [sub_resource type="StyleBoxTexture" id=2]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=3]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=4]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=5]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 4 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=6]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 4 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=7]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 4 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -158,101 +74,203 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="StyleBoxTexture" id=3]
 
-font/size = 12
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 5 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 5 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=5]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 6 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=6]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 6 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=7]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 6 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=8]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 7 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=9]
+
+font/size = 14
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 6 )
+font/font = ExtResource( 8 )
 
-[sub_resource type="SampleLibrary" id=9]
+[sub_resource type="SampleLibrary" id=10]
 
 samples/gaston_energia = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
 }
 samples/gaston_vectorial = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 10 )
 }
 samples/indi_acercate = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 11 )
 }
 samples/indi_gravedad = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 12 )
 }
 samples/nico_saltar = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 13 )
 }
 samples/nico_triple = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 13 )
+"sample": ExtResource( 14 )
 }
 samples/perro_pichi = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 14 )
+"sample": ExtResource( 15 )
 }
 samples/perro_wofwof = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 15 )
+"sample": ExtResource( 16 )
 }
 samples/rage_escudo = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 16 )
+"sample": ExtResource( 17 )
 }
 samples/rage_torre = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 17 )
+"sample": ExtResource( 18 )
 }
 samples/twain_hora = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 18 )
+"sample": ExtResource( 19 )
 }
 samples/twain_senior = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 19 )
+"sample": ExtResource( 20 )
 }
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
-font/font = ExtResource( 21 )
+font/font = ExtResource( 22 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 
 font/size = 30
 font/use_mipmaps = false
 font/use_filter = true
-font/font = ExtResource( 21 )
+font/font = ExtResource( 22 )
 
 [node name="SeleccionadorPersonajes" type="Panel"]
 
@@ -266,6 +284,23 @@ margin/right = 334.0
 margin/bottom = 347.0
 custom_styles/panel = SubResource( 1 )
 script/script = ExtResource( 2 )
+
+[node name="MedioImagen" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 120.0
+margin/right = 231.0
+margin/bottom = 222.0
+custom_styles/panel = SubResource( 13 )
+
+[node name="Imagen" type="Sprite" parent="."]
+
+transform/pos = Vector2( 120, 120 )
+texture = ExtResource( 4 )
 
 [node name="Izquierda" type="Button" parent="."]
 
@@ -333,7 +368,7 @@ margin/left = 10.0
 margin/top = 20.0
 margin/right = 260.0
 margin/bottom = 121.0
-custom_fonts/normal_font = SubResource( 12 )
+custom_fonts/normal_font = SubResource( 9 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -341,11 +376,6 @@ bbcode/enabled = false
 bbcode/bbcode = ""
 visible_characters = -1
 percent_visible = 1.0
-
-[node name="Imagen" type="Sprite" parent="."]
-
-transform/pos = Vector2( 120, 120 )
-texture = ExtResource( 7 )
 
 [node name="SamplePlayer" type="SamplePlayer2D" parent="."]
 
@@ -356,10 +386,10 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 9 )
+config/samples = SubResource( 10 )
 config/pitch_random = 0.0
 
-[node name="DetallesPoderes" parent="." instance=ExtResource( 20 )]
+[node name="DetallesPoderes" parent="." instance=ExtResource( 21 )]
 
 margin/left = 49.0
 margin/top = 401.0
@@ -389,7 +419,7 @@ margin/left = 126.0
 margin/top = 15.0
 margin/right = 208.0
 margin/bottom = 33.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Nombre"
 align = 1
@@ -419,7 +449,7 @@ margin/left = 88.0
 margin/top = 2.0
 margin/right = 248.0
 margin/bottom = 37.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "TIRADOR"
 align = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://Sprites/UI/metalPanel_green.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=2]
@@ -9,34 +9,38 @@
 [ext_resource path="res://Sprites/Energia1.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Naves/Satelite.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/UI/buttonYellow.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/buttonRed.png" type="Texture" id=10]
 
 [sub_resource type="GDScript" id=1]
 
 resource/name = "ComoJugar"
 script/source = "extends Patch9Frame
 
-
-
-
 func _ready():
-	set_process(true)
+	inicializar()
 	set_global_pos(Vector2(0,0))
 	pass
 
-func _process(delta):
+func inicializar():
 	var width = OS.get_window_size().width
 	var height = OS.get_window_size().height
 	get_node(\".\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"Siguiente\").set_pos(Vector2(width/1.1-get_node(\"Siguiente\").get_rect().size.width,height/1.2))
+	get_node(\"Siguiente\").set_pos(Vector2(width-get_node(\"Siguiente\").get_rect().size.width*2,height-get_node(\"Siguiente\").get_rect().size.height*2))
 	get_node(\"Como Jugar\").set_pos(Vector2(width/2-get_node(\"Como Jugar\").get_rect().size.width*get_node(\"Como Jugar\").get_scale().x/2,height/8))
 	get_node(\"Defensa\").set_pos(Vector2(width/2-get_node(\"Defensa\").get_rect().size.x,height/2-200))
 	get_node(\"Recolectar\").set_pos(Vector2(width/2-get_node(\"Recolectar\").get_rect().size.x,height/2))
 	get_node(\"Recco\").set_pos(Vector2(width/2-get_node(\"Recco\").get_rect().size.x,height/2+220))
+	get_node(\"Atras\").set_pos(Vector2(get_node(\"Atras\").get_rect().size.width,get_node(\"Siguiente\").get_pos().y))
 	pass
 
 
 func _on_Siguiente_pressed():
 	get_tree().change_scene(\"res://Escenas/Controles.tscn\")
+	pass # replace with function body
+
+
+func _on_Atras_pressed():
+	get_tree().change_scene(\"res://Escenas/MainMenu.tscn\")
 	pass # replace with function body
 "
 
@@ -100,6 +104,30 @@ font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 10 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=10]
+
+font/size = 25
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 3 )
 
 [node name="ComoJugar" type="Patch9Frame"]
 
@@ -264,9 +292,33 @@ custom_colors/font_color_hover = Color( 0.585938, 0.585938, 0.585938, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Siguiente"
+text = "Continuar"
+flat = false
+
+[node name="Atras" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 120.0
+margin/bottom = 72.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.671875, 0.661377, 0.661377, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Atras"
 flat = false
 
 [connection signal="pressed" from="Siguiente" to="." method="_on_Siguiente_pressed"]
+
+[connection signal="pressed" from="Atras" to="." method="_on_Atras_pressed"]
 
 

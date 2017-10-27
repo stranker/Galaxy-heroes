@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://Sprites/UI/glassPanel.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Seleccion_Personajes.gd" type="Script" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://Sounds/soundPick.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Escenas/SeleccionadorPersonajes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/UI/metalPanel_blueCorner.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/buttonRed.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/kenvector_future_thin.ttf" type="DynamicFontData" id=9]
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -25,7 +27,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -42,7 +44,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -59,7 +61,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=4]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -76,14 +78,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=5]
 
-font/size = 16
+font/size = 20
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=6]
 
 font/size = 16
 font/use_mipmaps = false
@@ -107,6 +109,30 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
+[sub_resource type="StyleBoxTexture" id=8]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 8 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=9]
+
+font/size = 20
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 9 )
+
 [node name="Seleccion_Personajes" type="Panel"]
 
 focus/ignore_mouse = false
@@ -117,7 +143,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 1024.0
 margin/bottom = 600.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 1 )
 script/script = ExtResource( 2 )
 
 [node name="Continuar" type="Button" parent="."]
@@ -130,10 +156,10 @@ margin/left = 440.0
 margin/top = 530.0
 margin/right = 590.0
 margin/bottom = 567.0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.660156, 0.657578, 0.657578, 1 )
 toggle_mode = false
@@ -164,7 +190,7 @@ margin/left = -100.0
 margin/top = 50.0
 margin/right = 313.0
 margin/bottom = 68.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "SELECCIONA LOS PERSONAJES"
 align = 1
@@ -187,6 +213,30 @@ margin/right = 970.0
 margin/bottom = 465.0
 custom_styles/panel = SubResource( 7 )
 
+[node name="Atras" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 12.0
+margin/bottom = 20.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.621094, 0.621094, 0.621094, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Atras"
+flat = false
+
 [connection signal="pressed" from="Continuar" to="." method="_on_Continuar_pressed"]
+
+[connection signal="pressed" from="Atras" to="." method="_on_Atras_pressed"]
 
 
