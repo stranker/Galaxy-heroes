@@ -20,7 +20,6 @@ func _input(event):
 	if(event.is_action(\"Pausa\") and event.is_pressed() and !event.is_echo()):
 		get_tree().set_pause(false)
 		queue_free()
-		print(\"xd\")
 	pass
 
 func _on_Salir_pressed():
