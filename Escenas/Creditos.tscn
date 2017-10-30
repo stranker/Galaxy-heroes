@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
-[ext_resource path="res://Sprites/UI/glassPanel_projection.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/UI/glassPanel_projection.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
 
@@ -16,10 +17,17 @@ func _ready():
 	var height = OS.get_window_size().height
 	get_node(\"Panel\").edit_set_rect(Rect2(0,0,width,height))
 	get_node(\"CenterContainer\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer\"),\"rect/pos\", Vector2(0,0), Vector2(0,-height), 20, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer\"),\"rect/pos\", Vector2(0,height/2), Vector2(0,-height), 20, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
 	get_node(\"Tween\").start()
 	pass
 "
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 1 )
 
 [sub_resource type="StyleBoxTexture" id=3]
 
@@ -27,7 +35,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -48,10 +56,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1022.0
-margin/bottom = 229.0
+margin/left = 2.0
+margin/top = 600.0
+margin/right = 1024.0
+margin/bottom = 971.0
 use_top_left = false
 
 [node name="Label" type="Label" parent="CenterContainer"]
@@ -60,10 +68,11 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 412.0
+margin/left = 341.0
 margin/top = 0.0
-margin/right = 609.0
-margin/bottom = 371.0
+margin/right = 680.0
+margin/bottom = 459.0
+custom_fonts/font = SubResource( 4 )
 text = "Hecho por:
 
 Daniel H. Natarelli
