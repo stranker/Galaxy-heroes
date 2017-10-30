@@ -28,6 +28,7 @@ func inicializar():
 	get_node("PanelEnergia/ProgressBar").edit_set_rect(Rect2(Vector2(0,0),Vector2(get_node("PanelEnergia").get_rect().size.width/1.5,30)))
 	get_node("PanelVida/ProgressBar").set_global_pos(Vector2(get_node("PanelVida").get_pos().x + get_node("PanelVida").get_rect().size.width - get_node("PanelVida/ProgressBar").get_rect().size.width - 5,get_node("PanelVida/Planeta").get_pos().y+(get_node("PanelVida/Planeta").get_rect().size.height-get_node("PanelVida/ProgressBar").get_rect().size.y)/2))
 	get_node("PanelEnergia/ProgressBar").set_global_pos(Vector2(get_node("PanelEnergia").get_global_pos().x + get_node("PanelEnergia").get_rect().size.width - get_node("PanelEnergia/ProgressBar").get_rect().size.width - 5,get_node("PanelEnergia/Energia").get_global_pos().y+(get_node("PanelEnergia/Energia").get_rect().size.height-get_node("PanelEnergia/ProgressBar").get_rect().size.y)/2))
+	global.pos_puntaje = Vector2(get_node("Puntaje").get_global_pos().x + get_node("Puntaje").get_rect().size.width/2, get_node("Puntaje").get_global_pos().y+10)
 	pass
 
 func SetPoderes():

@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Sprites/UI/glassPanel_corners.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_red_mid.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/UI/buttonRed.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Sprites/UI/PNG/barHorizontal_green_mid.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/buttonGreen.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -13,8 +13,15 @@ script/source = "extends Control
 func _ready():
 	get_tree().set_pause(true)
 	set_global_pos(Vector2(OS.get_window_size().width,OS.get_window_size().height)/2)
+	set_process_input(true)
 	pass
 
+func _input(event):
+	if(event.is_action(\"Pausa\") and event.is_pressed() and !event.is_echo()):
+		get_tree().set_pause(false)
+		queue_free()
+		print(\"xd\")
+	pass
 
 func _on_Salir_pressed():
 	get_tree().quit()
@@ -61,48 +68,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=4]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 2 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=5]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 2 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=10]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -119,48 +92,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=8]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 4 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="StyleBoxTexture" id=9]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 4 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=8]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=9]
 
 font/size = 30
 font/use_mipmaps = false
@@ -203,11 +142,11 @@ margin/top = 190.0
 margin/right = 190.0
 margin/bottom = 240.0
 custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.46875, 0.46875, 0.46875, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -224,12 +163,12 @@ margin/left = 50.0
 margin/top = 100.0
 margin/right = 210.0
 margin/bottom = 160.0
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.613281, 0.613281, 0.613281, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -247,7 +186,7 @@ margin/left = 20.0
 margin/top = 30.0
 margin/right = 180.0
 margin/bottom = 65.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 9 )
 text = "PAUSA"
 align = 1
 percent_visible = 1.0

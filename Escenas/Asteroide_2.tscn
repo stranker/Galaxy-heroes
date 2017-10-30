@@ -91,8 +91,8 @@ samples/asteroide = {
 }
 
 [node name="Asteroide_2" type="KinematicBody2D" groups=[
-"destruible",
 "wip",
+"destruible",
 ]]
 
 input/pickable = false

@@ -12,6 +12,7 @@ var CdRecolector
 var nombre
 var wave = 0
 var contadorEnemigos = 0
+var pos_puntaje = Vector2()
 
 func _ready():
 	set_process(true)

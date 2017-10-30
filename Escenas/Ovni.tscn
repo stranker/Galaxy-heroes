@@ -21,6 +21,8 @@ var dir
 var vivo = true 
 var VELOCIDAD = 100
 var skins = [\"res://Sprites/Enemigos/ufoBlue.png\",\"res://Sprites/Enemigos/ufoRed.png\",\"res://Sprites/Enemigos/ufoGreen.png\",\"res://Sprites/Enemigos/ufoYellow.png\"]
+var puntaje = preload(\"res://Escenas/Puntos.tscn\")
+var puntos = 1000
 
 func _ready():
 	randomize()
@@ -63,8 +65,12 @@ func Destruir():
 		vivo = false
 		get_node(\"SamplePlayer2D\").play(\"explosion\")
 		get_node(\"AnimationPlayer\").play(\"Destruir\")
-		global.puntaje += 1000
 		global.contadorEnemigos -= 1
+		var p = puntaje.instance()
+		p.setPuntaje(puntos)
+		p.set_global_pos(get_global_pos())
+		get_tree().get_root().add_child(p)
+	pass
 
 func Daniar():
 	if vivo:
@@ -219,8 +225,8 @@ tracks/3/keys = {
 }
 
 [node name="Ovni" type="RigidBody2D" groups=[
-"destruible",
 "wip",
+"destruible",
 ]]
 
 input/pickable = true

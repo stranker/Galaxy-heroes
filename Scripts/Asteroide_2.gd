@@ -7,6 +7,8 @@ var danio = 1
 var texturas = ["res://Sprites/Enemigos/AsteroideC_1.png","res://Sprites/Enemigos/AsteroideC_2.png"]
 var velocity = Vector2()
 var dir
+var puntos = 400
+var puntaje = preload("res://Escenas/Puntos.tscn")
 
 func _ready():
 	randomize()
@@ -54,11 +56,14 @@ func Destruir():
 		get_tree().get_root().add_child(energia)
 		energia.set_global_pos(get_global_pos())
 	global.camara.Shake()
-	global.puntaje += 300
 	global.contadorEnemigos -= 1
 	set_fixed_process(false)
 	get_node("SamplePlayer").play("asteroide")
 	get_node("AnimationPlayer").play("explotar")
+	var p = puntaje.instance()
+	p.setPuntaje(puntos)
+	p.set_global_pos(get_global_pos())
+	get_tree().get_root().add_child(p)
 
 func Daniar():
 	if vivo:

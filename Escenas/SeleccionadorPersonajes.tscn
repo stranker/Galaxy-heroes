@@ -40,30 +40,13 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=13]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-texture = ExtResource( 3 )
-margin/left = 0.0
-margin/right = 0.0
-margin/top = 0.0
-margin/bottom = 0.0
-expand_margin/left = 0.0
-expand_margin/right = 0.0
-expand_margin/top = 0.0
-expand_margin/bottom = 0.0
-draw_center = true
-
 [sub_resource type="StyleBoxTexture" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -114,7 +97,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 margin/left = 0.0
 margin/right = 0.0
 margin/top = 0.0
@@ -165,6 +148,23 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
+texture = ExtResource( 6 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=9]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
 texture = ExtResource( 7 )
 margin/left = 0.0
 margin/right = 0.0
@@ -176,14 +176,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
 
 font/size = 14
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 8 )
 
-[sub_resource type="SampleLibrary" id=10]
+[sub_resource type="SampleLibrary" id=11]
 
 samples/gaston_energia = {
 "db": 0.0,
@@ -258,14 +258,14 @@ samples/twain_senior = {
 "sample": ExtResource( 20 )
 }
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 
 font/size = 16
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 22 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 
 font/size = 30
 font/use_mipmaps = false
@@ -295,7 +295,7 @@ margin/left = 120.0
 margin/top = 120.0
 margin/right = 231.0
 margin/bottom = 222.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="Imagen" type="Sprite" parent="."]
 
@@ -313,9 +313,9 @@ margin/left = -11.0
 margin/top = 130.0
 margin/right = -1.0
 margin/bottom = 150.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 toggle_mode = false
@@ -335,9 +335,9 @@ margin/left = 325.0
 margin/top = 130.0
 margin/right = 335.0
 margin/bottom = 150.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 1, 0.996094, 0.996094, 1 )
 toggle_mode = false
@@ -356,7 +356,7 @@ margin/left = 168.0
 margin/top = 234.0
 margin/right = 432.0
 margin/bottom = 326.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 9 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelDetalles"]
 
@@ -368,7 +368,7 @@ margin/left = 10.0
 margin/top = 20.0
 margin/right = 260.0
 margin/bottom = 121.0
-custom_fonts/normal_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -380,13 +380,13 @@ percent_visible = 1.0
 [node name="SamplePlayer" type="SamplePlayer2D" parent="."]
 
 transform/pos = Vector2( 118.583, 115.243 )
-params/volume_db = 10.0
+params/volume_db = 1.0
 params/pitch_scale = 1.0
 params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 10 )
+config/samples = SubResource( 11 )
 config/pitch_random = 0.0
 
 [node name="DetallesPoderes" parent="." instance=ExtResource( 21 )]
@@ -419,7 +419,7 @@ margin/left = 126.0
 margin/top = 15.0
 margin/right = 208.0
 margin/bottom = 33.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Nombre"
 align = 1
@@ -449,7 +449,7 @@ margin/left = 88.0
 margin/top = 2.0
 margin/right = 248.0
 margin/bottom = 37.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "TIRADOR"
 align = 1

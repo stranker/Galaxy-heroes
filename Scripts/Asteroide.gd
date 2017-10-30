@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 var asteroides2_escena = preload("res://Escenas/Asteroide_2.tscn")
+var puntaje = preload("res://Escenas/Puntos.tscn")
+var puntos = 300
 var velocidad
 var rot = 0
 var danio = 2
@@ -26,7 +28,7 @@ func Inicializar():
 	pass
 
 func _fixed_process(delta):
-	velocity.x = dir.y * velocidad * delta
+	velocity.x = dir.x * velocidad * delta
 	velocity.y = dir.y * velocidad * delta
 	move(velocity)
 	CalcularPantalla()
@@ -58,10 +60,13 @@ func Destruir():
 			get_tree().get_root().add_child(asteroide2)
 			asteroide2.set_global_pos(get_global_pos())
 		global.camara.ShakeFuerte()
-		global.puntaje += 300
 		global.contadorEnemigos -= 1
 		get_node("SamplePlayer").play("asteroide")
 		get_node("Timer").start()
+		var p = puntaje.instance()
+		p.setPuntaje(puntos)
+		p.set_global_pos(get_global_pos())
+		get_tree().get_root().add_child(p)
 
 func Daniar():
 	if vivo:

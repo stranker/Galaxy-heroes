@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+resource/name = "Puntaje.gd"
+script/source = "extends Area2D
+
+var distancia = Vector2()
+var puntaje
+
+func _ready():
+	distancia = global.pos_puntaje - get_global_pos()
+	get_node(\"Tween\").interpolate_property(self,\"transform/pos\",get_global_pos(),global.pos_puntaje,1,Tween.TRANS_EXPO,Tween.EASE_IN_OUT,0.8)
+	get_node(\"Tween\").interpolate_callback(self,1.8,\"agregarPuntaje\")
+	get_node(\"Tween\").start()
+	pass
+
+func setPuntaje(punt):
+	puntaje = punt
+	get_node(\"Label\").set_text(str(punt))
+
+func agregarPuntaje():
+	global.puntaje += puntaje
+	queue_free()
+	pass"
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 20
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 1 )
+
+[node name="Puntos" type="Area2D"]
+
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+text = "300"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+
