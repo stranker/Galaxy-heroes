@@ -9,7 +9,7 @@
 [ext_resource path="res://Escenas/Gui.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Escenas/SpawnEnemigos.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Sounds/Soundtrack.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Afterburner.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/nuevaOleada.wav" type="Sample" id=11]
 
 [sub_resource type="DynamicFont" id=1]

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprites/UI/glassPanel_projection.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 resource/name = "Creditos.gd"
 script/source = "extends Node
@@ -15,12 +15,13 @@ func _ready():
 	var width = OS.get_window_size().width
 	var height = OS.get_window_size().height
 	get_node(\"Panel\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"Tween\").interpolate_property(get_node(\"Daniel\"),\"transform/pos\",get_node(\"Daniel\").get_global_pos(),get_node(\"Daniel\").get_global_pos()+Vector2(width,height),1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	get_node(\"CenterContainer\").edit_set_rect(Rect2(0,0,width,height))
+	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer\"),\"rect/pos\", Vector2(0,0), Vector2(0,-height), 20, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
 	get_node(\"Tween\").start()
 	pass
 "
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -39,7 +40,56 @@ draw_center = true
 
 [node name="Creditos" type="Node"]
 
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1022.0
+margin/bottom = 229.0
+use_top_left = false
+
+[node name="Label" type="Label" parent="CenterContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 412.0
+margin/top = 0.0
+margin/right = 609.0
+margin/bottom = 371.0
+text = "Hecho por:
+
+Daniel H. Natarelli
+
+
+Assets:
+
+Daniel H. Natarelli
+
+Kenney - Free assets
+
+
+Musica:
+
+Paolo D'Emilio - OpenGameArt
+
+Joe Reynolds - Professorlamp
+
+
+Sfx:
+
+Daniel H. Natarelli"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -51,22 +101,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="Daniel" type="Label" parent="."]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 568.0
-margin/top = 340.0
-margin/right = 616.0
-margin/bottom = 354.0
-text = "DANIEL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+custom_styles/panel = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
