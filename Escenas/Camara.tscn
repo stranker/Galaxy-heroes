@@ -30,15 +30,14 @@ tracks/0/path = NodePath(".:offset")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1 ),
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 10, 50 ), Vector2( 3, -30 ), Vector2( -30, 0 ), Vector2( 20, 10 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 10, 50 ), Vector2( 3, -30 ), Vector2( -30, 0 ), Vector2( 20, 10 ), Vector2( 0, 0 ) ]
 }
 
 [node name="Camara" type="Camera2D"]
 
-offset = Vector2( -5, 1 )
 anchor_mode = 1
 rotating = false
 current = true

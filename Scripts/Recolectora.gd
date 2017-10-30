@@ -39,6 +39,8 @@ func Reabastecer():
 		estacion.Reabastecer(self)
 		reabasteciendo = true
 		escala = Vector2(1,1)
+		get_node("Tween").interpolate_property(self,"energia", energia,0,3,Tween.TRANS_SINE,Tween.EASE_IN)
+		get_node("Tween").start()
 	pass
 
 func UsarPoder():
@@ -93,10 +95,12 @@ func Recolectar():
 
 func Destruir():
 	if(vivo):
+		Limpiar()
 		vivo = false
+		reabasteciendo = false
 		set_linear_velocity(Vector2(0,0))
-		energia = 0
 		get_node("AnimationPlayer").play("Explotar")
+		get_node("SamplePlayer2D").play("recolector_explosion")
 	pass
 
 func Reaparecer():
@@ -112,7 +116,7 @@ func Reaparecer():
 func _on_Recolectora_body_enter( body ):
 	if not(reabasteciendo):
 		escala = Vector2(1.2,1.2)
-	pass # replace with function body
+	pass
 
 
 func _on_Recolectora_body_exit( body ):

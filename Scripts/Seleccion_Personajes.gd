@@ -19,8 +19,8 @@ func resize():
 	get_node("Tiradores").set_pos(Vector2(width/2-get_node("Tiradores").get_item_rect().size.x-150,height/2-get_node("Recolectores").get_item_rect().size.y/2))
 	get_node("Recolectores").set_pos(Vector2(width/2+150,height/2-get_node("Recolectores").get_item_rect().size.y/2))
 	get_node("Label").set_pos(Vector2(width/2-get_node("Label").get_item_rect().size.x-200,50))
-	get_node("Continuar").edit_set_rect(Rect2(0,0,width/8,height/17))
-	get_node("Atras").edit_set_rect(Rect2(0,0,width/10,height/20))
+	get_node("Continuar").edit_set_rect(Rect2(0,0,width/6,height/15))
+	get_node("Atras").edit_set_rect(Rect2(0,0,width/10,height/17))
 	get_node("Continuar").set_pos(Vector2(width/2-get_node("Continuar").get_item_rect().size.x/2,height-get_node("Atras").get_rect().size.height*2))
 	get_node("Atras").set_pos(Vector2(0+get_node("Atras").get_rect().size.width,height-get_node("Atras").get_rect().size.height*2))
 	pass

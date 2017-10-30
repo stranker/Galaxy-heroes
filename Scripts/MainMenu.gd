@@ -16,7 +16,10 @@ func inicializar():
 	var height = OS.get_window_size().height
 	get_node("Background").set_global_pos(Vector2(OS.get_window_size().width/2,OS.get_window_size().height/2))
 	get_node("Title").set_global_pos(Vector2(width/2-get_node("Title").get_rect().size.width/2,height/7))
+	get_node("Jugar").edit_set_rect(Rect2(0,0,width/6,height/8))
+	get_node("Creditos").edit_set_rect(Rect2(0,0,width/6,height/10))
 	get_node("Jugar").set_global_pos(Vector2(width/2-get_node("Jugar").get_rect().size.width/2,height/2))
+	get_node("Creditos").set_global_pos(Vector2(width/2-get_node("Creditos").get_rect().size.width/2,get_node("Jugar").get_global_pos().y+get_node("Jugar").get_rect().size.height*1.2))
 	pass
 
 func _process(delta):
@@ -26,6 +29,7 @@ func _process(delta):
 		get_node("anim").play("stars")
 		get_node("Timer").start()
 		get_node("fondo").start()
+	pass
 
 func _on_Jugar_pressed():
 	get_tree().change_scene("res://Escenas/ComoJugar.tscn")
@@ -47,4 +51,9 @@ func _on_fondo_timeout():
 	var g = rand_range(0,1)
 	var b = rand_range(0,1)
 	get_node("Background").set_modulate(Color(r,g,b))
+	pass # replace with function body
+
+
+func _on_Creditos_pressed():
+	get_tree().change_scene("res://Escenas/Creditos.tscn")
 	pass # replace with function body

@@ -65,7 +65,7 @@ func Reabastecer(reco):
 	recolectora = reco
 	recolectora.set_linear_velocity(Vector2(0,0))
 	global.energia += recolectora.energia
-	recolectora.Limpiar()
+	pass
 
 func _on_Timer_reabastecimiento_timeout():
 	recolectora.reabasteciendo = false

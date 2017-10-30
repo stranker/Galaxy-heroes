@@ -1,30 +1,36 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/UI/glassPanel_projection.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/UI/buttonRed.png" type="Texture" id=3]
 
 [sub_resource type="GDScript" id=1]
 
 resource/name = "Creditos.gd"
 script/source = "extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
 func _ready():
+	randomize()
 	var width = OS.get_window_size().width
 	var height = OS.get_window_size().height
 	get_node(\"Panel\").edit_set_rect(Rect2(0,0,width,height))
 	get_node(\"CenterContainer\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer\"),\"rect/pos\", Vector2(0,height/2), Vector2(0,-height), 20, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+	get_node(\"Atras\").edit_set_rect(Rect2(0,0,width/10,height/20))
+	get_node(\"Atras\").set_global_pos(Vector2(get_node(\"Atras\").get_rect().size.width,height-get_node(\"Atras\").get_rect().size.height*3))
+	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer\"),\"rect/pos\", Vector2(0,height), Vector2(0,-height-get_node(\"CenterContainer/Label\").get_rect().size.height), 25, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+	get_node(\"Tween\").interpolate_property(get_node(\"CenterContainer/Label\"),\"custom_colors/font_color\",Color(0,0,0),Color(0xFF00FF),2,Tween.TRANS_LINEAR,Tween.EASE_OUT_IN)
 	get_node(\"Tween\").start()
 	pass
+
+
+func _on_Atras_pressed():
+	get_tree().change_scene(\"res://Escenas/MainMenu.tscn\")
+	pass # replace with function body
 "
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 
-font/size = 16
+font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 1 )
@@ -45,6 +51,30 @@ expand_margin/right = 0.0
 expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
+
+[sub_resource type="StyleBoxTexture" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 3 )
+margin/left = 0.0
+margin/right = 0.0
+margin/top = 0.0
+margin/bottom = 0.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 20
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 1 )
 
 [node name="Creditos" type="Node"]
 
@@ -68,11 +98,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 341.0
+margin/left = 93.0
 margin/top = 0.0
-margin/right = 680.0
-margin/bottom = 459.0
-custom_fonts/font = SubResource( 4 )
+margin/right = 929.0
+margin/bottom = 893.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Hecho por:
 
 Daniel H. Natarelli
@@ -94,7 +125,13 @@ Joe Reynolds - Professorlamp
 
 Sfx:
 
-Daniel H. Natarelli"
+Daniel H. Natarelli
+
+
+
+
+
+¡Gracias a todos los que colaboraron con ideas!"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -118,5 +155,29 @@ playback/process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="Atras" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 12.0
+margin/bottom = 20.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.53125, 0.53125, 0.53125, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Atras"
+flat = false
+
+[connection signal="pressed" from="Atras" to="." method="_on_Atras_pressed"]
 
 

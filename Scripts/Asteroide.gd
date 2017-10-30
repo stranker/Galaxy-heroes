@@ -10,6 +10,7 @@ var texturas = ["res://Sprites/Enemigos/AsteroideG_1.png","res://Sprites/Enemigo
 var vivo = true
 var velocity = Vector2()
 var dir
+var color
 
 func _ready():
 	Inicializar()
@@ -25,6 +26,7 @@ func Inicializar():
 	var dir_y = rand_range(-1,1)
 	dir = Vector2(dir_x,dir_y).normalized()
 	get_node("CollisionShape2D").set_trigger(true)
+	get_node("Sprite").set_modulate(Color(rand_range(0,1),rand_range(0,1),rand_range(0,1)))
 	pass
 
 func _fixed_process(delta):
@@ -59,6 +61,7 @@ func Destruir():
 			var asteroide2 = asteroides2_escena.instance()
 			get_tree().get_root().add_child(asteroide2)
 			asteroide2.set_global_pos(get_global_pos())
+			asteroide2.setModulate(get_node("Sprite").get_modulate())
 		global.camara.ShakeFuerte()
 		global.contadorEnemigos -= 1
 		get_node("SamplePlayer").play("asteroide")

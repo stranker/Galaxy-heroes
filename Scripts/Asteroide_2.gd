@@ -23,6 +23,9 @@ func _ready():
 	get_node("CollisionShape2D").set_trigger(true)
 	pass
 
+func setModulate(mod):
+	get_node("Sprite").set_modulate(mod)
+
 func _fixed_process(delta):
 	velocity.x = dir.y * velocidad * delta
 	velocity.y = dir.y * velocidad * delta
@@ -50,7 +53,7 @@ func CalcularPantalla():
 
 func Destruir():
 	vivo = false
-	var num = 1+randi() % 3
+	var num = 1+randi() % 2
 	for i in range(num):
 		var energia = energia_escena.instance()
 		get_tree().get_root().add_child(energia)

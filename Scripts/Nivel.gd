@@ -38,11 +38,13 @@ func setMapa():
 	randomize()
 	var num = randi() % listaBack.size()
 	get_node("Background").set_texture(load(listaBack[num]))
-	get_node("Background").edit_set_rect(Rect2(0,0,OS.get_window_size().x,OS.get_window_size().y))
+	get_node("Background").edit_set_rect(Rect2(-50,-50,OS.get_window_size().x+50,OS.get_window_size().y+50))
 	pass
 
 func _on_TiempoWave_timeout():
 	global.wave += 1
+	if(global.wave!=1):
+		get_node("SamplePlayer").play("nuevaOleada")
 	get_node("Wave").set_text("WAVE "+str(global.wave))
 	get_node("Tween").interpolate_property(get_node("Wave"),"visibility/opacity",0,1,3,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	get_node("Tween").interpolate_property(get_node("Wave"),"visibility/opacity",1,0,3,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT,3)

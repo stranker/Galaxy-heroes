@@ -35,8 +35,8 @@ func Reabastecer(reco):
 	get_node("Timer").start()
 	recolectora = reco
 	recolectora.set_linear_velocity(Vector2(0,0))
-	global.vidaPlaneta += recolectora.energia
-	recolectora.Limpiar()
+	global.llenarVida(recolectora.energia)
+	pass
 
 
 func _on_Timer_timeout():

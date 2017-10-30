@@ -47,7 +47,6 @@ transform/pos = Vector2( 515.58, 336.825 )
 [node name="Camara" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 512, 300 )
-offset = Vector2( 0, 0 )
 
 [node name="Gui" parent="." instance=ExtResource( 7 )]
 
@@ -105,7 +104,7 @@ autostart = false
 stream/stream = ExtResource( 10 )
 stream/play = true
 stream/loop = true
-stream/volume_db = -10.0
+stream/volume_db = -5.0
 stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0

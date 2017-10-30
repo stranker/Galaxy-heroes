@@ -34,9 +34,16 @@ func _process(delta):
 	if vidaPlaneta>10:
 		vidaPlaneta = 10
 
+func llenarVida(vid):
+	var tween = Tween.new()
+	get_tree().get_root().add_child(tween)
+	tween.interpolate_property(self,"vidaPlaneta",vidaPlaneta,vidaPlaneta+vid,3,Tween.TRANS_LINEAR,Tween.EASE_OUT_IN)
+	tween.start()
+	pass
+
 func PuedoSpawnear():
 	if(wave>0):
-		if(contadorEnemigos <= wave*3):
+		if(contadorEnemigos <= wave*2.5):
 			return true
 		else:
 			return false

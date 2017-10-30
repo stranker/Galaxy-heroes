@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Scripts/Recolectora.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Naves/Bouclier.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/recolector_explosion.wav" type="Sample" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 38.497, 29.9692 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -21,7 +22,7 @@ border_size = 2
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -34,12 +35,12 @@ border_size = 2
 border_blend = true
 draw_bg = true
 
-[sub_resource type="ColorRamp" id=2]
+[sub_resource type="ColorRamp" id=4]
 
 offsets = FloatArray( 0, 0.438596, 1 )
 colors = ColorArray( 0.886719, 0.836278, 0.0796661, 1, 0.804688, 0.511844, 0.0974426, 1, 0.996094, 0, 0, 0.565961 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 length = 1.2
 loop = false
@@ -87,9 +88,8 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource/name = "idle"
 length = 1.0
 loop = true
 step = 0.1
@@ -114,10 +114,19 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="ColorRamp" id=6]
+[sub_resource type="ColorRamp" id=7]
 
 offsets = FloatArray( 0, 0.54386, 1 )
 colors = ColorArray( 1, 0.867188, 0, 1, 0.882813, 0.448519, 0.0275879, 1, 0.167969, 0.000656128, 0.000656128, 0.565961 )
+
+[sub_resource type="SampleLibrary" id=8]
+
+samples/recolector_explosion = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
 
 [node name="Recolectora" type="RigidBody2D" groups=[
 "recolector",
@@ -164,8 +173,8 @@ margin/left = -10.0
 margin/top = 30.0
 margin/right = 30.0
 margin/bottom = 50.0
-custom_styles/fg = SubResource( 7 )
-custom_styles/bg = SubResource( 8 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 range/min = 0.0
 range/max = 10.0
 range/step = 1.0
@@ -203,7 +212,7 @@ params/final_size = 6.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 2 )
+color/color_ramp = SubResource( 4 )
 
 [node name="Position2D" type="Position2D" parent="."]
 
@@ -221,8 +230,8 @@ autostart = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Explotar = SubResource( 4 )
-anims/idle = SubResource( 5 )
+anims/Explotar = SubResource( 5 )
+anims/idle = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -253,7 +262,7 @@ params/anim_initial_pos = 0.0
 randomness/linear_velocity = 0.4
 randomness/final_size = 0.5
 color/color = Color( 0.976563, 0.961602, 0.0190735, 1 )
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 7 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -261,6 +270,17 @@ playback/process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 8 )
+config/pitch_random = 0.0
 
 [connection signal="body_enter" from="." to="." method="_on_Recolectora_body_enter"]
 
