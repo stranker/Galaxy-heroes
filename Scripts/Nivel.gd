@@ -51,13 +51,8 @@ func _on_TiempoWave_timeout():
 	get_node("Tween").start()
 	pass # replace with function body
 
-func ReiniciarNivel():
-	get_node("TiempoMuerto").start()
+func mostrarHighscore():
+	get_tree().change_scene("res://Escenas/HighscoreEscena.tscn")
 
 func StopMusic():
 	get_node("StreamPlayer").stop()
-
-func _on_TiempoMuerto_timeout():
-	get_tree().change_scene("res://Escenas/Seleccion_Personajes.tscn")
-	global.Inicializar()
-	pass # replace with function body

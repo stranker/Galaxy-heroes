@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Background/1.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Sprites/UI/04B_30__.TTF" type="DynamicFontData" id=11]
 [ext_resource path="res://Sprites/UI/buttonGreen.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/UI/buttonYellow.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -223,6 +224,23 @@ font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 10 )
 
+[sub_resource type="StyleBoxTexture" id=11]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+texture = ExtResource( 13 )
+margin/left = 10.0
+margin/right = 10.0
+margin/top = 10.0
+margin/bottom = 10.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
 [node name="MainMenu" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -322,7 +340,7 @@ custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 0.394531, 0.394531, 0.394531, 1 )
+custom_colors/font_color_hover = Color( 0.710938, 0.710938, 0.710938, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -382,11 +400,33 @@ custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 9 )
 custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_hover = Color( 0.210938, 0.210938, 0.210938, 1 )
+custom_colors/font_color_hover = Color( 0.714844, 0.714844, 0.714844, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "CREDITOS"
+flat = false
+
+[node name="Highscores" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -5.0
+margin/top = 204.0
+margin/right = 288.0
+margin/bottom = 264.0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.605469, 0.605469, 0.605469, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Highscores"
 flat = false
 
 [node name="Tween" type="Tween" parent="."]
@@ -405,5 +445,7 @@ playback/speed = 1.0
 [connection signal="pressed" from="Title/Star" to="." method="_on_Star_pressed"]
 
 [connection signal="pressed" from="Creditos" to="." method="_on_Creditos_pressed"]
+
+[connection signal="pressed" from="Highscores" to="." method="_on_Highscores_pressed"]
 
 

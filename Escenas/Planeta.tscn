@@ -61,7 +61,7 @@ tracks/2/keys = {
 "transitions": FloatArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "ReiniciarPartida"
+"method": "goToHighscore"
 } ]
 }
 tracks/3/type = "method"

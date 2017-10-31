@@ -91,9 +91,8 @@ func gameOver():
 	get_node("gameOver").show()
 	get_node("SamplePlayer").play("gameOver")
 
-func ReiniciarPartida():
-	get_parent().ReiniciarNivel()
-
+func goToHighscore():
+	get_parent().mostrarHighscore()
 
 func _on_Proteccion_area_enter( area ):
 	if area.is_in_group("destruible") and vivo:

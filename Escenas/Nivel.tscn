@@ -92,13 +92,6 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TiempoMuerto" type="Timer" parent="."]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = false
-autostart = false
-
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 10 )
@@ -135,7 +128,5 @@ playback/repeat = false
 playback/speed = 1.0
 
 [connection signal="timeout" from="TiempoWave" to="." method="_on_TiempoWave_timeout"]
-
-[connection signal="timeout" from="TiempoMuerto" to="." method="_on_TiempoMuerto_timeout"]
 
 
