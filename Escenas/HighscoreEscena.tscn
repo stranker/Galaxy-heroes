@@ -7,12 +7,12 @@
 [ext_resource path="res://Sprites/UI/buttonBlue.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/UI/buttonRed.png" type="Texture" id=6]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 resource/name = "Highscore.gd"
 script/source = "extends Control
 
-var listaScores = []
+var diccionarioScores = {}
 
 func _ready():
 	var width = OS.get_window_size().width
@@ -41,41 +41,56 @@ func inicializar():
 	get_node(\"Reiniciar\").hide()
 	for i in get_node(\"SC/HBoxContainer/Nombre\").get_children():
 		if(i.get_name()!=\"Encabezado\"):
-			i.set_text(\"-\")
+			i.set_text(\"\")
 	for i in get_node(\"SC/HBoxContainer/Score\").get_children():
 		if(i.get_name()!=\"Encabezado\"):
-			i.set_text(\"-\")
+			i.set_text(\"\")
 	cargarScores()
 	if(global.puntaje>0):
 		get_node(\"Score\").show()
 		get_node(\"Reiniciar\").show()
 	pass
 
+func cargarScores():
+	var archivoScores = File.new()
+	archivoScores.open(\"user://highscore.dat\",File.READ)
+	diccionarioScores.parse_json(archivoScores.get_as_text())
+	archivoScores.close()
+	resolverDiccionario()
+	pass
+
+func resolverDiccionario():
+	diccionarioScores.values().sort()
+	var nombres = get_node(\"SC/HBoxContainer/Nombre\").get_children()
+	var scores = get_node(\"SC/HBoxContainer/Score\").get_children()
+	var max_h = 10
+	if(diccionarioScores.keys().size()>max_h):
+		for i in range(max_h,diccionarioScores.keys().size()):
+			diccionarioScores.erase(diccionarioScores.keys()[i])
+	for i in range(diccionarioScores.keys().size()+1):
+		if(nombres[i].get_name()!=\"Encabezado\"):
+			nombres[i].set_text(diccionarioScores.keys()[i-1])
+			scores[i].set_text(str(diccionarioScores[diccionarioScores.keys()[i-1]]))
+	pass
+
+func guardarScores():
+	var file = File.new()
+	file.open(\"user://highscore.dat\", file.WRITE)
+	file.store_string(diccionarioScores)
+	file.close()
+	pass
+
 func _on_Confirm_pressed():
 	var nombre = get_node(\"Score/TextEdit\").get_text()
 	var score = global.puntaje
-	verificarPuntaje(nombre,score)
+	diccionarioScores[nombre] = score
+	resolverDiccionario()
 	get_node(\"Score\").hide()
-	pass # replace with function body
-
-func verificarPuntaje(nombre,score):
-	var scores = get_node(\"SC/HBoxContainer/Score\").get_children()
-	var seteado = false
-	for i in range(scores.size()):
-		if(scores[i].get_name()!=\"Encabezado\"):
-			if(scores[i].get_text()==\"-\" and !seteado):
-				seteado = true
-				scores[i].set_text(str(score))
-				get_node(\"SC/HBoxContainer/Nombre\").get_child(i).set_text(nombre)
-			elif(score>int(scores[i].get_text()) and !seteado):
-				seteado = true
-				scores[i].set_text(str(score))
-				get_node(\"SC/HBoxContainer/Nombre\").get_child(i).set_text(nombre)
 	pass
 
 func _on_Salir_pressed():
 	get_tree().change_scene(\"res://Escenas/MainMenu.tscn\")
-	pass # replace with function body
+	pass
 
 
 func _on_Reiniciar_pressed():
@@ -83,7 +98,7 @@ func _on_Reiniciar_pressed():
 	pass # replace with function body
 "
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=2]
 
 content_margin/left = 0.0
 content_margin/right = 0.0
@@ -100,21 +115,21 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 
 font/size = 50
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 
 font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=5]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -131,7 +146,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=6]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -148,14 +163,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 
 font/size = 30
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=8]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -172,14 +187,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=9]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=10]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -196,14 +211,14 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=11]
 
 font/size = 25
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=15]
+[sub_resource type="StyleBoxTexture" id=12]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -220,7 +235,7 @@ expand_margin/top = 0.0
 expand_margin/bottom = 0.0
 draw_center = true
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=13]
 
 font/size = 25
 font/use_mipmaps = false
@@ -237,7 +252,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -249,7 +264,7 @@ margin/left = 152.0
 margin/top = 26.0
 margin/right = 874.0
 margin/bottom = 445.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="LabelPrincipal" type="Label" parent="."]
 
@@ -261,7 +276,7 @@ margin/left = 98.0
 margin/top = 48.0
 margin/right = 770.0
 margin/bottom = 105.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Tabla de Highscore"
 align = 1
@@ -271,7 +286,6 @@ max_lines_visible = -1
 
 [node name="SC" type="ScrollContainer" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -285,7 +299,6 @@ scroll/vertical = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SC"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -321,7 +334,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 131.0
 margin/bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "NOMBRE"
 percent_visible = 1.0
@@ -338,7 +351,7 @@ margin/left = 0.0
 margin/top = 49.0
 margin/right = 131.0
 margin/bottom = 78.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -355,7 +368,7 @@ margin/left = 0.0
 margin/top = 98.0
 margin/right = 131.0
 margin/bottom = 127.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -372,7 +385,7 @@ margin/left = 0.0
 margin/top = 147.0
 margin/right = 131.0
 margin/bottom = 176.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -389,7 +402,7 @@ margin/left = 0.0
 margin/top = 196.0
 margin/right = 131.0
 margin/bottom = 225.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -406,7 +419,7 @@ margin/left = 0.0
 margin/top = 245.0
 margin/right = 131.0
 margin/bottom = 274.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -423,7 +436,7 @@ margin/left = 0.0
 margin/top = 294.0
 margin/right = 131.0
 margin/bottom = 323.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -440,7 +453,7 @@ margin/left = 0.0
 margin/top = 343.0
 margin/right = 131.0
 margin/bottom = 372.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -457,7 +470,7 @@ margin/left = 0.0
 margin/top = 392.0
 margin/right = 131.0
 margin/bottom = 421.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -474,7 +487,7 @@ margin/left = 0.0
 margin/top = 441.0
 margin/right = 131.0
 margin/bottom = 470.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -491,7 +504,7 @@ margin/left = 0.0
 margin/top = 490.0
 margin/right = 131.0
 margin/bottom = 519.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -500,6 +513,7 @@ max_lines_visible = -1
 
 [node name="Score" type="VBoxContainer" parent="SC/HBoxContainer"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -521,7 +535,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 105.0
 margin/bottom = 29.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "SCORE"
 percent_visible = 1.0
@@ -538,7 +552,7 @@ margin/left = 0.0
 margin/top = 49.0
 margin/right = 105.0
 margin/bottom = 78.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -555,7 +569,7 @@ margin/left = 0.0
 margin/top = 98.0
 margin/right = 105.0
 margin/bottom = 127.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -572,7 +586,7 @@ margin/left = 0.0
 margin/top = 147.0
 margin/right = 105.0
 margin/bottom = 176.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -589,7 +603,7 @@ margin/left = 0.0
 margin/top = 196.0
 margin/right = 105.0
 margin/bottom = 225.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -606,7 +620,7 @@ margin/left = 0.0
 margin/top = 245.0
 margin/right = 105.0
 margin/bottom = 274.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -623,7 +637,7 @@ margin/left = 0.0
 margin/top = 294.0
 margin/right = 105.0
 margin/bottom = 323.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -640,7 +654,7 @@ margin/left = 0.0
 margin/top = 343.0
 margin/right = 105.0
 margin/bottom = 372.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -657,7 +671,7 @@ margin/left = 0.0
 margin/top = 392.0
 margin/right = 105.0
 margin/bottom = 421.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -674,7 +688,7 @@ margin/left = 0.0
 margin/top = 441.0
 margin/right = 105.0
 margin/bottom = 470.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -691,7 +705,7 @@ margin/left = 0.0
 margin/top = 490.0
 margin/right = 105.0
 margin/bottom = 519.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOLA"
 percent_visible = 1.0
@@ -700,6 +714,7 @@ max_lines_visible = -1
 
 [node name="Score" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -708,7 +723,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 313.0
 margin/bottom = 125.0
-custom_styles/panel = SubResource( 10 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="TextEdit" type="TextEdit" parent="Score"]
 
@@ -720,8 +735,8 @@ margin/left = 2.0
 margin/top = 4.0
 margin/right = 310.0
 margin/bottom = 77.0
-custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/completion_lines = 3
 custom_constants/completion_max_width = 3
@@ -743,10 +758,10 @@ margin/left = 75.0
 margin/top = 84.0
 margin/right = 238.0
 margin/bottom = 116.0
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 11 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.574219, 0.574219, 0.574219, 1 )
 toggle_mode = false
@@ -765,10 +780,10 @@ margin/left = 201.0
 margin/top = 392.0
 margin/right = 293.0
 margin/bottom = 421.0
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/normal = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.578125, 0.578125, 0.578125, 1 )
 toggle_mode = false
@@ -787,10 +802,10 @@ margin/left = 685.0
 margin/top = 401.0
 margin/right = 853.0
 margin/bottom = 439.0
-custom_styles/hover = SubResource( 15 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/normal = SubResource( 15 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/normal = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.625, 0.625, 0.625, 1 )
 toggle_mode = false

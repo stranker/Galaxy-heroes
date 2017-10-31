@@ -11,6 +11,7 @@ func _ready():
 	get_node("TiempoWave").start()
 	set_process_input(true)
 	inicializar()
+	global.Inicializar()
 	pass
 
 func inicializar():
