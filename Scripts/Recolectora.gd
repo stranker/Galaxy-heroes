@@ -99,6 +99,7 @@ func Destruir():
 		vivo = false
 		reabasteciendo = false
 		set_linear_velocity(Vector2(0,0))
+		get_node("Adelante").set_emitting(false)
 		get_node("AnimationPlayer").play("Explotar")
 		get_node("SamplePlayer2D").play("recolector_explosion")
 	pass

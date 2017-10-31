@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Sprites/UI/metalPanel_yellow.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/UI/kenvector_future.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="GDScript" id=2]
+
+resource/name = "Highscore.gd"
+script/source = "extends Control
+
+var tween
+
+func _ready():
+	tween = get_node(\"Tween\")
+	var width = OS.get_window_size().width
+	var height = OS.get_window_size().height
+	get_node(\"Panel\").edit_set_rect(Rect2(0,0,width,height))
+	get_node(\"Panel\").set_global_pos(Vector2(0,0))
+	get_node(\"LabelPrincipal\").edit_set_rect(Rect2(0,0,width,70))
+	get_node(\"LabelPrincipal\").set_global_pos(Vector2((width-get_node(\"LabelPrincipal\").get_rect().size.width)/2,height/10))
+	get_node(\"Tabla\").edit_set_rect(Rect2(0,0,width,height/2))
+	get_node(\"Tabla\").set_global_pos(Vector2(width/3,get_node(\"LabelPrincipal\").get_global_pos().y+get_node(\"LabelPrincipal\").get_rect().size.height*2))
+	pass"
+
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin/left = 0.0
+content_margin/right = 0.0
+content_margin/top = 0.0
+content_margin/bottom = 0.0
+texture = ExtResource( 1 )
+margin/left = 10.0
+margin/right = 10.0
+margin/top = 10.0
+margin/bottom = 10.0
+expand_margin/left = 0.0
+expand_margin/right = 0.0
+expand_margin/top = 0.0
+expand_margin/bottom = 0.0
+draw_center = true
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 50
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[node name="HighscoreEscena" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = SubResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 152.0
+margin/top = 26.0
+margin/right = 874.0
+margin/bottom = 445.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="LabelPrincipal" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 98.0
+margin/top = 48.0
+margin/right = 770.0
+margin/bottom = 105.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Tabla de Highscore"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Tabla" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 150.0
+margin/top = 136.0
+margin/right = 600.0
+margin/bottom = 291.0
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_constants/table_vseparation = 50
+bbcode/enabled = false
+bbcode/bbcode = "PEPITO			25
+JUANCITO		33
+MICAAJKDSJKA	44"
+visible_characters = -1
+percent_visible = 1.0
+
+
