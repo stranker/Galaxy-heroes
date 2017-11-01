@@ -7,7 +7,6 @@ var pausa = false
 func _ready():
 	Input.set_custom_mouse_cursor(load("res://Sprites/UI/PNG/crossair_white.png"),Vector2(18,18))
 	CargarMapas()
-	setMapa()
 	get_node("TiempoWave").start()
 	set_process_input(true)
 	inicializar()
@@ -15,6 +14,7 @@ func _ready():
 	pass
 
 func inicializar():
+	setMapa()
 	get_node("Camara").set_global_pos(Vector2(OS.get_window_size().x,OS.get_window_size().y)/2)
 	get_node("SpawnEnemigos").set_global_pos(Vector2(0,0))
 	get_node("SpawnEnemigos1").set_global_pos(Vector2(0,OS.get_window_size().height))
@@ -39,7 +39,7 @@ func setMapa():
 	randomize()
 	var num = randi() % listaBack.size()
 	get_node("Background").set_texture(load(listaBack[num]))
-	get_node("Background").edit_set_rect(Rect2(-50,-50,OS.get_window_size().x+50,OS.get_window_size().y+50))
+	get_node("Background").edit_set_rect(Rect2(-50,-50,OS.get_window_size().x+100,OS.get_window_size().y+100))
 	pass
 
 func _on_TiempoWave_timeout():
