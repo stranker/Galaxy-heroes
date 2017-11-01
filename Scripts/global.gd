@@ -21,7 +21,7 @@ func _ready():
 func Inicializar():
 	energia = 10
 	vidaPlaneta = 10
-	wave = 0
+	wave = 1
 	contadorEnemigos = 0
 	puntaje = 0
 	wip()

@@ -109,7 +109,7 @@ func estaOrdenado(array):
 	var cont = 0
 	for i in range(array.size()):
 		if(i < array.size()-1):
-			if(array[i] > array[i+1]):
+			if(int(array[i]) > int(array[i+1])):
 				cont += 1
 	return cont == array.size()-1
 
@@ -118,7 +118,7 @@ func ordernarArray(array):
 	while !estaOrdenado(resultado):
 		for i in range(resultado.size()):
 			if(i<resultado.size() -1):
-				if(resultado[i] <= resultado[i+1]):
+				if(int(resultado[i]) <= int(resultado[i+1])):
 					var aux = resultado[i+1]
 					resultado[i+1] = resultado[i]
 					resultado[i] = aux
