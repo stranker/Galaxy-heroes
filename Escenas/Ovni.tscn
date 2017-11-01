@@ -23,7 +23,7 @@ var vivo = true
 var VELOCIDAD = 100
 var skins = [\"res://Sprites/Enemigos/ufoBlue.png\",\"res://Sprites/Enemigos/ufoRed.png\",\"res://Sprites/Enemigos/ufoGreen.png\",\"res://Sprites/Enemigos/ufoYellow.png\"]
 var puntaje = preload(\"res://Escenas/Puntos.tscn\")
-var puntos = 1000
+var puntos = 1000* global.wave
 
 func _ready():
 	randomize()
@@ -234,8 +234,8 @@ tracks/3/keys = {
 }
 
 [node name="Ovni" type="RigidBody2D" groups=[
-"destruible",
 "wip",
+"destruible",
 ]]
 
 input/pickable = true

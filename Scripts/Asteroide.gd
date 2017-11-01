@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var asteroides2_escena = preload("res://Escenas/Asteroide_2.tscn")
 var puntaje = preload("res://Escenas/Puntos.tscn")
-var puntos = 300
+var puntos = 300 * global.wave
 var velocidad
 var rot = 0
 var danio = 2

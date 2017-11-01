@@ -93,6 +93,8 @@ func gameOver():
 
 func goToHighscore():
 	get_parent().mostrarHighscore()
+	global.wip()
+	pass
 
 func _on_Proteccion_area_enter( area ):
 	if area.is_in_group("destruible") and vivo:

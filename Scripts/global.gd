@@ -24,6 +24,9 @@ func Inicializar():
 	wave = 0
 	contadorEnemigos = 0
 	puntaje = 0
+	wip()
+
+func wip():
 	var wips = get_tree().get_nodes_in_group("wip")
 	for i in wips:
 		i.queue_free()

@@ -7,7 +7,7 @@ var danio = 1
 var texturas = ["res://Sprites/Enemigos/AsteroideC_1.png","res://Sprites/Enemigos/AsteroideC_2.png"]
 var velocity = Vector2()
 var dir
-var puntos = 400
+var puntos = 400 * global.wave
 var puntaje = preload("res://Escenas/Puntos.tscn")
 
 func _ready():

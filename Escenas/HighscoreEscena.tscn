@@ -13,6 +13,7 @@ resource/name = "Highscore.gd"
 script/source = "extends Control
 
 var diccionarioScores = {}
+var keysScore = []
 
 func _ready():
 	var width = OS.get_window_size().width
@@ -22,8 +23,8 @@ func _ready():
 	get_node(\"LabelPrincipal\").edit_set_rect(Rect2(0,0,width,70))
 	get_node(\"LabelPrincipal\").set_global_pos(Vector2((width-get_node(\"LabelPrincipal\").get_rect().size.width)/2,height/10))
 	get_node(\"SC\").edit_set_rect(Rect2(0,0,width,height))
-	get_node(\"SC\").set_global_pos(Vector2(width/3,height/3))
-	get_node(\"SC/HBoxContainer\").edit_set_rect(Rect2(0,0,width/2,height/2))
+	get_node(\"SC\").set_global_pos(Vector2(width/3,height/4))
+	get_node(\"SC/HBoxContainer\").edit_set_rect(Rect2(0,0,width/2,height/3))
 	get_node(\"Salir\").edit_set_rect(Rect2(0,0,width/8,height/16))
 	get_node(\"Reiniciar\").edit_set_rect(Rect2(0,0,width/8,height/16))
 	get_node(\"Salir\").set_global_pos(Vector2(get_node(\"Reiniciar\").get_rect().size.width,height-get_node(\"Reiniciar\").get_rect().size.height*2))
@@ -39,16 +40,20 @@ func _ready():
 func inicializar():
 	get_node(\"Score\").hide()
 	get_node(\"Reiniciar\").hide()
-	for i in get_node(\"SC/HBoxContainer/Nombre\").get_children():
-		if(i.get_name()!=\"Encabezado\"):
-			i.set_text(\"\")
-	for i in get_node(\"SC/HBoxContainer/Score\").get_children():
-		if(i.get_name()!=\"Encabezado\"):
-			i.set_text(\"\")
+	limpiarScores()
 	cargarScores()
+	if(!diccionarioScores.empty()):
+		resolverDiccionario()
 	if(global.puntaje>0):
 		get_node(\"Score\").show()
 		get_node(\"Reiniciar\").show()
+	pass
+
+func limpiarScores():
+	for i in get_node(\"SC/HBoxContainer/Nombre/EncabezadoN\").get_children():
+		i.set_text(\"\")
+	for i in get_node(\"SC/HBoxContainer/Score/EncabezadoS\").get_children():
+		i.set_text(\"\")
 	pass
 
 func cargarScores():
@@ -56,47 +61,68 @@ func cargarScores():
 	archivoScores.open(\"user://highscore.dat\",File.READ)
 	diccionarioScores.parse_json(archivoScores.get_as_text())
 	archivoScores.close()
-	resolverDiccionario()
 	pass
 
 func resolverDiccionario():
-	diccionarioScores.values().sort()
-	var nombres = get_node(\"SC/HBoxContainer/Nombre\").get_children()
-	var scores = get_node(\"SC/HBoxContainer/Score\").get_children()
+	limpiarScores()
+	var nombres = get_node(\"SC/HBoxContainer/Nombre/EncabezadoN\").get_children()
+	var scores = get_node(\"SC/HBoxContainer/Score/EncabezadoS\").get_children()
+	var keysDic = diccionarioScores.keys()
+	keysScore = ordernarArray(keysDic)
 	var max_h = 10
 	if(diccionarioScores.keys().size()>max_h):
 		for i in range(max_h,diccionarioScores.keys().size()):
 			diccionarioScores.erase(diccionarioScores.keys()[i])
-	for i in range(diccionarioScores.keys().size()+1):
-		if(nombres[i].get_name()!=\"Encabezado\"):
-			nombres[i].set_text(diccionarioScores.keys()[i-1])
-			scores[i].set_text(str(diccionarioScores[diccionarioScores.keys()[i-1]]))
+	for i in range(diccionarioScores.keys().size()):
+		nombres[i].set_text(diccionarioScores[keysScore[i]])
+		scores[i].set_text(str(keysScore[i]))
 	pass
 
 func guardarScores():
 	var file = File.new()
 	file.open(\"user://highscore.dat\", file.WRITE)
-	file.store_string(diccionarioScores)
+	file.store_string(diccionarioScores.to_json())
 	file.close()
 	pass
 
 func _on_Confirm_pressed():
-	var nombre = get_node(\"Score/TextEdit\").get_text()
+	var nombre = str(get_node(\"Score/TextEdit\").get_text())
 	var score = global.puntaje
-	diccionarioScores[nombre] = score
+	if(nombre == \"\"):
+		diccionarioScores[score] = \"PLACEHOLDER\"
+	else:
+		diccionarioScores[score] = nombre
 	resolverDiccionario()
 	get_node(\"Score\").hide()
+	guardarScores()
 	pass
 
 func _on_Salir_pressed():
 	get_tree().change_scene(\"res://Escenas/MainMenu.tscn\")
 	pass
 
-
 func _on_Reiniciar_pressed():
 	get_tree().change_scene(\"res://Escenas/Seleccion_Personajes.tscn\")
 	pass # replace with function body
-"
+
+func estaOrdenado(array):
+	var cont = 0
+	for i in range(array.size()):
+		if(i < array.size()-1):
+			if(array[i] > array[i+1]):
+				cont += 1
+	return cont == array.size()-1
+
+func ordernarArray(array):
+	var resultado = array
+	while !estaOrdenado(resultado):
+		for i in range(resultado.size()):
+			if(i<resultado.size() -1):
+				if(resultado[i] <= resultado[i+1]):
+					var aux = resultado[i+1]
+					resultado[i+1] = resultado[i]
+					resultado[i] = aux
+	return resultado"
 
 [sub_resource type="StyleBoxTexture" id=2]
 
@@ -286,6 +312,7 @@ max_lines_visible = -1
 
 [node name="SC" type="ScrollContainer" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -305,10 +332,210 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = -1.0
 margin/top = 0.0
-margin/right = 485.0
-margin/bottom = 519.0
-custom_constants/separation = 250
+margin/right = 506.0
+margin/bottom = 29.0
+custom_constants/separation = 100
 alignment = 0
+
+[node name="Num" type="VBoxContainer" parent="SC/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 71.0
+margin/bottom = 29.0
+custom_constants/separation = 20
+alignment = 0
+
+[node name="EncabezadoNum" type="Label" parent="SC/HBoxContainer/Num"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 71.0
+margin/bottom = 29.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Pos."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H1" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 49.0
+margin/right = 131.0
+margin/bottom = 78.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H2" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 98.0
+margin/right = 131.0
+margin/bottom = 127.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H3" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 147.0
+margin/right = 131.0
+margin/bottom = 176.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H4" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 196.0
+margin/right = 131.0
+margin/bottom = 225.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H5" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 245.0
+margin/right = 131.0
+margin/bottom = 274.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H6" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 294.0
+margin/right = 131.0
+margin/bottom = 323.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "6"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H7" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 343.0
+margin/right = 131.0
+margin/bottom = 372.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "7"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H8" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 392.0
+margin/right = 131.0
+margin/bottom = 421.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "8"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H9" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 441.0
+margin/right = 131.0
+margin/bottom = 470.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "9"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="H10" type="Label" parent="SC/HBoxContainer/Num/EncabezadoNum"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 490.0
+margin/right = 131.0
+margin/bottom = 519.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "10"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Nombre" type="VBoxContainer" parent="SC/HBoxContainer"]
 
@@ -317,15 +544,16 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 171.0
 margin/top = 0.0
-margin/right = 131.0
-margin/bottom = 519.0
+margin/right = 302.0
+margin/bottom = 29.0
 custom_constants/separation = 20
 alignment = 0
 
-[node name="Encabezado" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="EncabezadoN" type="Label" parent="SC/HBoxContainer/Nombre"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -341,7 +569,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H1" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H1" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -358,7 +586,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H2" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H2" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -375,7 +603,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H3" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H3" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -392,7 +620,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H4" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H4" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -409,7 +637,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H5" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H5" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -426,7 +654,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H6" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H6" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -443,7 +671,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H7" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H7" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -460,7 +688,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H8" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H8" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -477,7 +705,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H9" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H9" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -494,7 +722,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H10" type="Label" parent="SC/HBoxContainer/Nombre"]
+[node name="H10" type="Label" parent="SC/HBoxContainer/Nombre/EncabezadoN"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -518,14 +746,14 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 381.0
+margin/left = 402.0
 margin/top = 0.0
-margin/right = 486.0
-margin/bottom = 519.0
+margin/right = 507.0
+margin/bottom = 29.0
 custom_constants/separation = 20
 alignment = 0
 
-[node name="Encabezado" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="EncabezadoS" type="Label" parent="SC/HBoxContainer/Score"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -537,12 +765,12 @@ margin/right = 105.0
 margin/bottom = 29.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "SCORE"
+text = "Score"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H1" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H1" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -559,7 +787,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H2" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H2" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -576,7 +804,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H3" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H3" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -593,7 +821,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H4" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H4" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -610,7 +838,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H5" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H5" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -627,7 +855,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H6" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H6" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -644,7 +872,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H7" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H7" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -661,7 +889,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H8" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H8" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -678,7 +906,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H9" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H9" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -695,7 +923,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="H10" type="Label" parent="SC/HBoxContainer/Score"]
+[node name="H10" type="Label" parent="SC/HBoxContainer/Score/EncabezadoS"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
