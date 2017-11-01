@@ -16,6 +16,7 @@ var diccionarioScores = {}
 var keysScore = []
 
 func _ready():
+	Input.set_custom_mouse_cursor(load(\"res://Sprites/UI/PNG/cursor_pointer3D.png\"),Vector2(18,18))
 	var width = OS.get_window_size().width
 	var height = OS.get_window_size().height
 	get_node(\"Panel\").edit_set_rect(Rect2(0,0,width,height))

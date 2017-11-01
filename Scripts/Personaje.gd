@@ -3,7 +3,7 @@ extends Area2D
 var misil = preload("res://Escenas/Misil.tscn")
 var rayo = preload("res://Escenas/RayoEspectral.tscn")
 var salto = preload("res://Escenas/SaltoCuantico.tscn")
-var escudo = preload("res://Escenas/Omniescudo.tscn")
+var escudo = preload("res://Escenas/OmniEscudo.tscn")
 var atractor = preload("res://Escenas/AtractorGravitacional.tscn")
 var mina = preload("res://Escenas/MinaEspacial.tscn")
 

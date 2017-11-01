@@ -6,6 +6,7 @@ var listaTiradores = []
 var listaRecolectores = []
 
 func _ready():
+	Input.set_custom_mouse_cursor(load("res://Sprites/UI/PNG/cursor_pointer3D.png"),Vector2(18,18))
 	crearTiradores()
 	crearRecolectores()
 	cargarPersonajes()
